@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel local — Generador de propiedades — Nueva Oriente</title>
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  body{background:var(--paper-2);}
+  .admin-wrap{max-width:920px;margin:0 auto;padding:32px 20px 80px;}
+  .admin-title{margin-bottom:6px;}
+  .admin-sub{color:var(--text-soft);margin-bottom:32px;}
+  .admin-card{background:var(--paper);border:1px solid var(--line);padding:28px;margin-bottom:28px;}
+  .admin-card h2{font-size:1.15rem;margin-bottom:18px;border-bottom:1px solid var(--line);padding-bottom:12px;}
+  .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+  .field.full{grid-column:1/-1;}
+  .field label{font-size:.85rem;color:var(--text-soft);font-weight:500;}
+  .field .hint{font-size:.75rem;color:var(--text-soft);font-weight:400;}
+  input[type=text], input[type=number], textarea{
+    font-family:'Work Sans',sans-serif;
+    font-size:.95rem;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    background:#fff;
+    color:var(--text);
+  }
+  textarea{resize:vertical;min-height:90px;}
+  .step-num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:24px;height:24px;background:var(--ink);color:#fff;
+    font-size:.8rem;margin-right:8px;flex-shrink:0;
+  }
+  .output-block{margin-top:14px;}
+  .output-block .file-label{
+    font-size:.8rem;color:var(--brick);margin-bottom:6px;font-weight:600;
+  }
+  pre.code-out{
+    background:#1c1c1a;color:#EDEAE3;padding:16px;font-size:.8rem;
+    overflow-x:auto;white-space:pre;max-height:340px;overflow-y:auto;
+    line-height:1.5;
+  }
+  .copy-btn{
+    margin-top:8px;background:var(--ink);color:#fff;border:none;
+    padding:9px 16px;font-size:.85rem;cursor:pointer;
+  }
+  .copy-btn:hover{opacity:.85;}
+  .copy-btn.copied{background:var(--whatsapp);}
+  .generate-btn{
+    background:var(--whatsapp);color:#fff;border:none;
+    padding:14px 26px;font-size:1rem;cursor:pointer;font-weight:500;
+  }
+  .generate-btn:hover{background:var(--whatsapp-dark);}
+  .notice{margin-bottom:24px;}
+  @media(max-width:700px){.field-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="admin-wrap">
+
+  <h1 class="admin-title serif">Generador de propiedades</h1>
+  <p class="admin-sub">Herramienta de uso local para Nueva Oriente. No se conecta a internet ni guarda nada — cada vez que la abres empieza en blanco.</p>
+
+  <div class="notice">
+    Llena el formulario y al final te doy <strong>dos bloques de código</strong>: uno para pegar en <code>index.html</code> (la tarjeta del catálogo) y otro para crear el archivo nuevo de la ficha completa.
+  </div>
+
+  <div class="admin-card">
+    <h2><span class="step-num">1</span>Identificador de la propiedad</h2>
+    <div class="field">
+      <label for="slug">Número o código corto (para el nombre del archivo)</label>
+      <input type="text" id="slug" placeholder="Ej: 2" value="2">
+      <span class="hint">Se usará para crear el archivo <strong>propiedad-<span id="slugPreview">2</span>.html</strong>. Usa solo números o letras, sin espacios ni tildes.</span>
+    </div>
+  </div>
+
+  <div class="admin-card">
+    <h2><span class="step-num">2</span>Datos generales</h2>
+    <div class="field-grid">
+      <div class="field">
+        <label>Etiqueta corta</label>
+        <input type="text" id="tag" placeholder="CASA EN VENTA" value="CASA EN VENTA">
+      </div>
+      <div class="field">
+        <label>Título de la propiedad</label>
+        <input type="text" id="titulo" placeholder="Casa en el barrio El Poblado" value="">
+      </div>
+      <div class="field">
+        <label>Precio (solo números, sin puntos ni $)</label>
+        <input type="number" id="precio" placeholder="350000000" value="">
+      </div>
+      <div class="field">
+        <label>Ubicación</label>
+        <input type="text" id="ubicacion" placeholder="Barrio El Poblado, Medellín" value="">
+      </div>
+      <div class="field">
+        <label>Habitaciones</label>
+        <input type="text" id="habitaciones" value="3">
+      </div>
+      <div class="field">
+        <label>Baños</label>
+        <input type="text" id="banos" value="2">
+      </div>
+      <div class="field">
+        <label>Área construida (con m²)</label>
+        <input type="text" id="area" placeholder="120 m²" value="">
+      </div>
+      <div class="field">
+        <label>Pisos</label>
+        <input type="text" id="pisos" value="2">
+      </div>
+    </div>
+    <div class="field full">
+      <label>Descripción (un párrafo por línea)</label>
+      <textarea id="descripcion" placeholder="Escribe uno o varios párrafos. Cada línea nueva será un párrafo separado."></textarea>
+    </div>
+  </div>
+
+  <div class="admin-card">
+    <h2><span class="step-num">3</span>Fotos</h2>
+    <div class="field full">
+      <label>Nombres de los archivos de foto, separados por coma</label>
+      <input type="text" id="fotos" placeholder="casa2-1.jpg, casa2-2.jpg, casa2-3.jpg, casa2-4.jpg">
+      <span class="hint">La primera foto de la lista será la foto principal (la de la tarjeta y la más grande de la ficha). Recuerda copiar los archivos de imagen dentro de la carpeta <strong>img/</strong> con esos mismos nombres antes de publicar.</span>
+    </div>
+  </div>
+
+  <div class="admin-card">
+    <h2><span class="step-num">4</span>Mensaje de WhatsApp para esta propiedad</h2>
+    <div class="field full">
+      <label>Mensaje precargado</label>
+      <input type="text" id="mensajeWa" placeholder="Se genera automático según el título, pero puedes editarlo">
+    </div>
+  </div>
+
+  <button class="generate-btn" onclick="generar()">Generar código</button>
+
+  <div id="resultados" style="display:none;margin-top:36px;">
+
+    <div class="admin-card">
+      <h2>Paso A — Pega esto en <code>index.html</code></h2>
+      <p class="hint">Abre <code>index.html</code>, busca la línea que dice <code>&lt;div class="property-grid"&gt;</code> y pega este bloque justo después (antes de la primera tarjeta, o después de la última — el orden en el código define el orden en pantalla).</p>
+      <div class="output-block">
+        <pre class="code-out" id="outCard"></pre>
+        <button class="copy-btn" onclick="copiar('outCard', this)">Copiar código de la tarjeta</button>
+      </div>
+    </div>
+
+    <div class="admin-card">
+      <h2>Paso B — Crea el archivo <code id="fileNameShow">propiedad-2.html</code></h2>
+      <p class="hint">Duplica <code>propiedad-1.html</code>, renómbralo como se indica arriba, borra todo su contenido y pega esto:</p>
+      <div class="output-block">
+        <pre class="code-out" id="outPage"></pre>
+        <button class="copy-btn" onclick="copiar('outPage', this)">Copiar código de la ficha completa</button>
+      </div>
+    </div>
+
+    <div class="admin-card">
+      <h2>¿Cómo elimino o edito una propiedad después?</h2>
+      <p style="color:var(--text-soft);font-size:.92rem;">
+        <strong>Eliminar:</strong> abre <code>index.html</code>, busca el bloque <code>&lt;article class="property-card"&gt;...&lt;/article&gt;</code> de esa propiedad y bórralo completo. Luego borra su archivo <code>propiedad-X.html</code>.<br><br>
+        <strong>Editar:</strong> vuelve a llenar este formulario con los datos corregidos y reemplaza el bloque viejo por el nuevo en ambos lugares. O edita el texto directamente en el HTML si es un cambio pequeño.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+document.getElementById('slug').addEventListener('input', e=>{
+  document.getElementById('slugPreview').textContent = e.target.value.trim() || 'X';
+});
+
+function escapeHtml(str){
+  return (str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function formatPrice(n){
+  n = parseInt(n||0,10);
+  if(isNaN(n)) return '$ 0';
+  return '$ ' + n.toLocaleString('es-CO');
+}
+
+function generar(){
+  const slug = (document.getElementById('slug').value.trim() || 'X').toLowerCase().replace(/[^a-z0-9-]/g,'');
+  const tag = escapeHtml(document.getElementById('tag').value.trim() || 'CASA EN VENTA');
+  const titulo = escapeHtml(document.getElementById('titulo').value.trim() || 'Título de la propiedad');
+  const precioRaw = document.getElementById('precio').value;
+  const precio = formatPrice(precioRaw);
+  const ubicacion = escapeHtml(document.getElementById('ubicacion').value.trim() || 'Barrio, Ciudad');
+  const hab = escapeHtml(document.getElementById('habitaciones').value.trim() || '0');
+  const banos = escapeHtml(document.getElementById('banos').value.trim() || '0');
+  const area = escapeHtml(document.getElementById('area').value.trim() || '0 m²');
+  const pisos = escapeHtml(document.getElementById('pisos').value.trim() || '1');
+  const descLines = document.getElementById('descripcion').value.split('\n').map(l=>l.trim()).filter(Boolean);
+  const descHtml = descLines.length ? descLines.map(l=>`        <p>${escapeHtml(l)}</p>`).join('\n') : '        <p>Descripción pendiente.</p>';
+
+  let fotos = document.getElementById('fotos').value.split(',').map(f=>f.trim()).filter(Boolean);
+  if(fotos.length === 0) fotos = ['sala-1.jpg'];
+  const cover = fotos[0];
+  const sec1 = fotos[1] || fotos[0];
+  const sec2 = fotos[2] || fotos[1] || fotos[0];
+  const restantes = fotos.slice(1);
+
+  let mensaje = document.getElementById('mensajeWa').value.trim();
+  if(!mensaje) mensaje = `Hola, quiero más información sobre ${document.getElementById('titulo').value.trim() || 'esta propiedad'}.`;
+  const mensajeAttr = escapeHtml(mensaje);
+
+  const fileName = `propiedad-${slug}.html`;
+  document.getElementById('fileNameShow').textContent = fileName;
+
+  const card = `<article class="property-card">
+  <a href="${fileName}">
+    <div class="property-photo">
+      <img src="img/${escapeHtml(cover)}" alt="${titulo}">
+    </div>
+  </a>
+  <div class="property-body">
+    <span class="property-tag">${tag}</span>
+    <a href="${fileName}"><h3 class="property-price">${precio}</h3></a>
+    <p class="property-loc">${ubicacion}</p>
+    <div class="property-specs">
+      <span>${hab} hab.</span>
+      <span>${banos} baños</span>
+      <span>${area}</span>
+    </div>
+    <a href="${fileName}" class="property-link">Ver ficha completa</a>
+  </div>
+</article>`;
+
+  const masFotosHtml = restantes.map(f=>`          <div class="property-photo"><img src="img/${escapeHtml(f)}" alt="${titulo}"></div>`).join('\n');
+
+  const page = `<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${titulo} — Nueva Oriente</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><img src="img/logo-nueva-oriente-transparente.png" alt="Logo Nueva Oriente"></span>
+      <span class="logo-text">Nueva Oriente<span>PROPIEDADES</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#propiedades">Propiedades</a>
+      <a href="index.html#nosotros">Sobre nosotros</a>
+      <a href="index.html#contacto">Contacto</a>
+      <a class="nav-cta" data-wa data-wa-msg="${mensajeAttr}" href="#">Escribir por WhatsApp</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <p class="breadcrumb"><a href="index.html">Inicio</a> / <a href="index.html#propiedades">Propiedades</a> / ${titulo}</p>
+
+  <div class="detail-head">
+    <div>
+      <h1>${titulo}</h1>
+      <p style="color:var(--text-soft);margin-top:6px;">${ubicacion}</p>
+    </div>
+    <div class="detail-price">${precio}</div>
+  </div>
+
+  <div class="gallery">
+    <div class="gallery-main"><img src="img/${escapeHtml(cover)}" alt="${titulo}"></div>
+    <img src="img/${escapeHtml(sec1)}" alt="${titulo}">
+    <img src="img/${escapeHtml(sec2)}" alt="${titulo}">
+  </div>
+
+  <div class="detail-layout">
+    <div>
+      <div class="spec-list">
+        <div><span class="num">${hab}</span><span class="label">Habitaciones</span></div>
+        <div><span class="num">${banos}</span><span class="label">Baños</span></div>
+        <div><span class="num">${area}</span><span class="label">Área construida</span></div>
+        <div><span class="num">${pisos}</span><span class="label">Pisos</span></div>
+      </div>
+
+      <div class="detail-desc">
+        <h2>Descripción</h2>
+${descHtml}
+
+        <h2 style="margin-top:32px;">Más fotos</h2>
+        <div class="property-grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr));">
+${masFotosHtml || '          <div class=\"property-photo\"><img src=\"img/'+escapeHtml(cover)+'\" alt=\"'+titulo+'\"></div>'}
+        </div>
+      </div>
+    </div>
+
+    <aside class="contact-box">
+      <h3>¿Te interesa esta propiedad?</h3>
+      <p>Escríbeme directo y te cuento todos los detalles, o coordinamos una visita.</p>
+      <a href="#" class="btn btn-whatsapp" data-wa data-wa-msg="${mensajeAttr}">Preguntar por esta propiedad</a>
+      <a href="index.html#propiedades" class="btn btn-brass" style="border-color:#4A5064;color:#F4F1EA;">Ver otras propiedades</a>
+    </aside>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <span>© 2026 Nueva Oriente</span>
+      <span>Sitio de prueba en construcción</span>
+    </div>
+  </div>
+</footer>
+
+<a href="#" class="wa-float" data-wa data-wa-msg="${mensajeAttr}" aria-label="Escribir por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.6 0-3.1-.42-4.4-1.16l-.32-.18-3.02.79.8-2.94-.2-.32A7.94 7.94 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.4-5.6c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.17-.7-.62-1.18-1.39-1.32-1.63-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
+</a>
+
+<script src="js/main.js"><` + `/script>
+</body>
+</html>`;
+
+  document.getElementById('outCard').textContent = card;
+  document.getElementById('outPage').textContent = page;
+  document.getElementById('resultados').style.display = 'block';
+  document.getElementById('resultados').scrollIntoView({behavior:'smooth'});
+}
+
+function copiar(id, btn){
+  const text = document.getElementById(id).textContent;
+  const done = () => {
+    const original = btn.textContent;
+    btn.textContent = '¡Copiado!';
+    btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent = original; btn.classList.remove('copied');}, 1800);
+  };
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text, done));
+  } else {
+    fallbackCopy(text, done);
+  }
+}
+
+function fallbackCopy(text, done){
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.left = '-9999px';
+  document.body.appendChild(ta);
+  ta.select();
+  try{ document.execCommand('copy'); done(); }catch(e){ alert('No se pudo copiar automáticamente. Selecciona el texto manualmente.'); }
+  document.body.removeChild(ta);
+}
+</script>
+</body>
+</html>
