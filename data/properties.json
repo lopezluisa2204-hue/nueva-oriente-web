@@ -1,15 +1,11 @@
 {
   "items": [
     {
-      "slug": "1",
-      "tag": "CASA EN VENTA",
-      "titulo": "Casa en venta",
-      "precio": 600000000,
-      "ubicacion": "Barrio san Francisco, Guarne - Antioquia",
       "habitaciones": "4",
-      "banos": "3",
+      "precio": 600000000,
+      "mensajeWa": "Hola Nueva Oriente, quiero más información sobre la casa en venta ubicada en el barrio San Francisco en Guarne - Antioquia",
+      "slug": "1",
       "area": "00 m²",
-      "pisos": "3",
       "descripcion": [
         "Casa de 4 plantas, habitacion principal en el sotano con su respectivo baño, el primer piso cuenta con sala, comedor, cocina y baño social. El segundo piso cuenta con dos habitaciones y un baño compartido y por ultimo el tercer piso el patio amplio y otra habitacion."
       ],
@@ -19,18 +15,18 @@
         "img/alcoba-1.jpg",
         "img/alcoba-2.jpg"
       ],
-      "mensajeWa": "Hola Nueva Oriente, quiero más información sobre la casa en venta ubicada en el barrio San Francisco en Guarne - Antioquia"
+      "banos": "3",
+      "titulo": "Casa en venta",
+      "tag": "CASA EN VENTA",
+      "pisos": "3",
+      "ubicacion": "Barrio san Francisco, Guarne - Antioquia"
     },
     {
-      "slug": "2",
-      "tag": "CASA EN VENTA",
-      "titulo": "Casa campestre",
-      "precio": 450000000,
-      "ubicacion": "Vereda La Clara, Guarne - Antioquia",
       "habitaciones": "3",
-      "banos": "2",
+      "precio": 450000000,
+      "mensajeWa": "Hola, quiero más información sobre la casa campestre en venta ubicada en la vereda La Clara",
+      "slug": "2",
       "area": "120 m²",
-      "pisos": "1",
       "descripcion": [
         "Hermosa casa campestre"
       ],
@@ -40,7 +36,29 @@
         "img/laclara3.jpg",
         "img/laclara4.jpg"
       ],
-      "mensajeWa": "Hola, quiero más información sobre la casa campestre en venta ubicada en la vereda La Clara"
+      "banos": "2",
+      "titulo": "Casa campestre",
+      "tag": "CASA EN VENTA",
+      "pisos": "1",
+      "ubicacion": "Vereda La Clara, Guarne - Antioquia"
+    },
+    {
+      "habitaciones": "",
+      "precio": 1500000000,
+      "mensajeWa": "Hola, Nueva Oriente quiero saber sobre el Lote Vereda La Mejia 325",
+      "slug": "LOTE VEREDA LA MEJIA 325",
+      "descripcion": [
+        "Lote industrial ubicado en la vereda La Mejia del municipio de Guarne, Antioquia, cuenta con 15 hectareas..."
+      ],
+      "fotos": [
+        "/img/lotelamejia.jpg",
+        "/img/lotelamejia1.jpg"
+      ],
+      "banos": "",
+      "titulo": "LOTE INDUSTRIAL",
+      "tag": "LOTE ",
+      "pisos": "",
+      "ubicacion": "LOTE INDUSTRIAL VEREDA LA MEJIA, GUARNE - ANTIOQUIA"
     }
   ]
 }
