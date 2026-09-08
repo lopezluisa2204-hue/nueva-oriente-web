@@ -1,14 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap');
 
 :root{
-  --ink:#161615;
-  --paper:#F6F5F2;
-  --paper-2:#DDE8DF;
-  --brick:#4B5259;
-  --brass:#8C8578;
-  --text:#201F1D;
-  --text-soft:#5C5A55;
-  --line:#D6D3CC;
+  /* Paleta neutra: negro, blanco y grises. El único color "de marca" que
+     se conserva es el verde de WhatsApp, porque es funcional (se reconoce
+     de inmediato como botón de contacto). Todo lo demás es escala de grises. */
+  --ink:#1B1B1A;
+  --paper:#FAFAF8;
+  --paper-2:#EDECE9;
+  --brick:#4A4A47;
+  --brass:#8A8883;
+  --text:#222221;
+  --text-soft:#65635E;
+  --line:#DBD9D4;
   --whatsapp:#25D366;
   --whatsapp-dark:#1DA851;
   --max:1120px;
@@ -94,6 +97,32 @@ a:focus-visible, button:focus-visible{
   transition:border-color .15s ease;
 }
 .nav-links a:hover{border-color:var(--brick);}
+
+/* Menú desplegable "Propiedades" (Lotes, Casas, Apartamentos, Fincas, Bodegas) */
+.nav-item{position:relative;}
+.dropdown-toggle{display:inline-flex;align-items:center;gap:4px;}
+.dropdown-toggle::after{content:"▾";font-size:.65em;}
+.dropdown-menu{
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  min-width:180px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
+  padding:6px 0;
+  z-index:60;
+}
+.nav-item:hover .dropdown-menu,
+.nav-item:focus-within .dropdown-menu{display:block;}
+.dropdown-menu a{
+  display:block;
+  padding:10px 18px;
+  font-size:.9rem;
+  border-bottom:none !important;
+}
+.dropdown-menu a:hover{background:var(--paper-2);}
 .nav-cta{
   background:var(--whatsapp);
   color:#fff !important;
@@ -283,6 +312,45 @@ a:focus-visible, button:focus-visible{
   padding-bottom:1px;
 }
 
+/* ---------- FILTROS DE CATEGORÍA (Propiedades) ---------- */
+.filter-pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:32px;
+}
+.filter-pill{
+  background:transparent;
+  border:1px solid var(--line);
+  color:var(--text-soft);
+  padding:8px 16px;
+  font-size:.85rem;
+  font-family:'Work Sans', sans-serif;
+  cursor:pointer;
+}
+.filter-pill:hover{border-color:var(--brick);color:var(--text);}
+.filter-pill.active{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+/* ---------- SERVICIOS ---------- */
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:28px;
+}
+.service-card{
+  background:var(--paper-2);
+  padding:32px 28px;
+  border-top:3px solid var(--ink);
+}
+.service-card h3{font-size:1.15rem;margin-bottom:10px;}
+.service-card p{color:var(--text-soft);font-size:.92rem;margin:0 0 18px;}
+.service-card a{
+  font-size:.88rem;
+  color:var(--ink);
+  border-bottom:1px solid var(--ink);
+  padding-bottom:1px;
+}
+
 /* ---------- ABOUT / TRUST STRIP ---------- */
 .strip{
   background:var(--paper-2);
@@ -467,6 +535,18 @@ a:focus-visible, button:focus-visible{
   .nav-links.nav-open{display:flex;}
   .nav-links a{padding:12px 0;border-bottom:1px solid var(--line);}
   .nav-links a:last-of-type{border-bottom:none;}
+  /* En móvil el submenú de Propiedades queda siempre visible, como acordeón */
+  .dropdown-menu{
+    display:block;
+    position:static;
+    border:none;
+    box-shadow:none;
+    padding:0 0 0 16px;
+    background:transparent;
+  }
+  .dropdown-menu a{padding:10px 0;border-bottom:1px solid var(--line) !important;font-size:.88rem;color:var(--text-soft);}
+  .dropdown-menu a:hover{background:transparent;}
+  .dropdown-toggle::after{content:"";}
   .nav-links .nav-cta{
     justify-content:center;
     margin-top:10px;
@@ -479,6 +559,7 @@ a:focus-visible, button:focus-visible{
   .hero-photo{min-height:260px;order:1;}
   .hero-copy h1{font-size:1.9rem;}
   .strip .wrap{grid-template-columns:1fr;padding:32px 20px;gap:24px;}
+  .services-grid{grid-template-columns:1fr;}
   .footer-grid{grid-template-columns:1fr;gap:24px;}
   .gallery{grid-template-columns:1fr;grid-template-rows:auto;}
   .gallery-main img, .gallery img{aspect-ratio:4/3;}

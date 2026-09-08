@@ -18,6 +18,7 @@
       "banos": "3",
       "titulo": "Casa en venta",
       "tag": "CASA EN VENTA",
+      "categoria": "Casa",
       "pisos": "3",
       "ubicacion": "Barrio san Francisco, Guarne - Antioquia"
     },
@@ -39,6 +40,7 @@
       "banos": "2",
       "titulo": "Casa campestre",
       "tag": "CASA EN VENTA",
+      "categoria": "Finca",
       "pisos": "1",
       "ubicacion": "Vereda La Clara, Guarne - Antioquia"
     },
@@ -57,6 +59,7 @@
       "banos": "",
       "titulo": "LOTE INDUSTRIAL",
       "tag": "LOTE ",
+      "categoria": "Lote",
       "pisos": "",
       "ubicacion": "LOTE INDUSTRIAL VEREDA LA MEJIA, GUARNE - ANTIOQUIA"
     }

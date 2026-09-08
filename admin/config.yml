@@ -24,6 +24,12 @@ collections:
             summary: "{{fields.titulo}} — {{fields.ubicacion}}"
             fields:
               - {label: "Identificador (slug)", name: "slug", widget: "string", hint: "Único para cada propiedad, sin espacios ni tildes. Ejemplo: 3"}
+              - label: "Categoría"
+                name: "categoria"
+                widget: "select"
+                hint: "Define en qué filtro del menú 'Propiedades' aparece."
+                options: ["Lote", "Casa", "Apartamento", "Finca", "Bodega"]
+                default: "Casa"
               - {label: "Etiqueta", name: "tag", widget: "string", default: "CASA EN VENTA"}
               - {label: "Título", name: "titulo", widget: "string", hint: "Ejemplo: Casa en el barrio El Poblado"}
               - {label: "Precio (solo números, sin puntos ni $)", name: "precio", widget: "number", value_type: "int"}

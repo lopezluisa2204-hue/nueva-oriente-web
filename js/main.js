@@ -43,13 +43,54 @@ async function loadProperties() {
   return Array.isArray(data) ? data : (data.items || []);
 }
 
+// Categorías fijas del menú "Propiedades" (Lotes, Casas, Apartamentos, Fincas, Bodegas).
+const CATEGORIAS = [
+  { valor: "Lote", etiqueta: "Lotes" },
+  { valor: "Casa", etiqueta: "Casas" },
+  { valor: "Apartamento", etiqueta: "Apartamentos" },
+  { valor: "Finca", etiqueta: "Fincas" },
+  { valor: "Bodega", etiqueta: "Bodegas" },
+];
+
+// Pinta los botones de filtro ("Todas", "Lotes", "Casas"...) sobre el catálogo,
+// y deja el catálogo filtrado según cuál esté activo.
+function renderFilterPills(properties) {
+  const wrap = document.getElementById("filterPills");
+  if (!wrap) return properties;
+
+  const params = new URLSearchParams(location.search);
+  const activa = params.get("categoria") || "";
+
+  const pills = [{ valor: "", etiqueta: "Todas" }, ...CATEGORIAS];
+  wrap.innerHTML = pills.map((c) => `
+    <button type="button" class="filter-pill${c.valor === activa ? " active" : ""}" data-categoria="${escapeHtml(c.valor)}">
+      ${escapeHtml(c.etiqueta)}
+    </button>`).join("");
+
+  wrap.querySelectorAll(".filter-pill").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const categoria = btn.getAttribute("data-categoria");
+      const url = new URL(location.href);
+      if (categoria) url.searchParams.set("categoria", categoria);
+      else url.searchParams.delete("categoria");
+      history.replaceState(null, "", url);
+      renderCatalog(properties);
+    });
+  });
+
+  return activa ? properties.filter((p) => p.categoria === activa) : properties;
+}
+
 // Pinta las tarjetas del catálogo en index.html dentro de #propertyGrid.
-function renderCatalog(properties) {
+// Aplica el filtro de categoría activo (menú desplegable o botones de arriba).
+function renderCatalog(allProperties) {
   const grid = document.getElementById("propertyGrid");
   if (!grid) return;
 
+  const properties = renderFilterPills(allProperties);
+
   if (!properties.length) {
-    grid.innerHTML = '<p style="color:var(--text-soft);">Aún no hay propiedades publicadas.</p>';
+    grid.innerHTML = '<p style="color:var(--text-soft);">No hay propiedades en esta categoría por ahora.</p>';
     return;
   }
 

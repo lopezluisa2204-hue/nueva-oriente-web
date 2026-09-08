@@ -30,7 +30,17 @@ if (window.netlifyIdentity) {
       <span class="logo-text">Nueva Oriente<span>INMOBILIARIA</span></span>
     </a>
     <nav class="nav-links">
-      <a href="index.html#propiedades">Propiedades</a>
+      <div class="nav-item">
+        <a href="index.html#propiedades" class="dropdown-toggle">Propiedades</a>
+        <div class="dropdown-menu">
+          <a href="index.html?categoria=Lote#propiedades">Lotes</a>
+          <a href="index.html?categoria=Casa#propiedades">Casas</a>
+          <a href="index.html?categoria=Apartamento#propiedades">Apartamentos</a>
+          <a href="index.html?categoria=Finca#propiedades">Fincas</a>
+          <a href="index.html?categoria=Bodega#propiedades">Bodegas</a>
+        </div>
+      </div>
+      <a href="index.html#servicios">Servicios</a>
       <a href="index.html#nosotros">Sobre nosotros</a>
       <a href="index.html#contacto">Contacto</a>
       <a class="nav-cta" data-wa data-wa-msg="Hola, quiero más información sobre sus propiedades." href="#">Escribir por WhatsApp</a>
@@ -79,10 +89,40 @@ if (window.netlifyIdentity) {
       <h2>Propiedades disponibles</h2>
     </div>
 
+    <!-- Filtros por categoría (Lotes, Casas, Apartamentos, Fincas, Bodegas).
+         Se pintan y funcionan desde js/main.js, junto con las tarjetas. -->
+    <div class="filter-pills" id="filterPills"></div>
+
     <!-- Las tarjetas se pintan solas desde data/properties.json (js/main.js).
          Ese archivo es el que edita el panel de administrador en /admin. -->
     <div class="property-grid" id="propertyGrid">
       <p style="color:var(--text-soft);">Cargando propiedades…</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="servicios" style="background:var(--paper-2);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Servicios</h2>
+      <p>Además de la venta de propiedades, ofrecemos estos servicios técnicos.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Topografías</h3>
+        <p>Levantamientos y estudios topográficos del terreno, con planos y medidas precisas.</p>
+        <a href="#" data-wa data-wa-msg="Hola, quiero información sobre el servicio de topografía.">Consultar por WhatsApp</a>
+      </div>
+      <div class="service-card">
+        <h3>Avalúos</h3>
+        <p>Avalúo comercial de tu propiedad, con soporte para venta, compra o trámites bancarios.</p>
+        <a href="#" data-wa data-wa-msg="Hola, quiero información sobre el servicio de avalúos.">Consultar por WhatsApp</a>
+      </div>
+      <div class="service-card">
+        <h3>Explanaciones</h3>
+        <p>Explanación y adecuación de terrenos para construcción o uso agrícola.</p>
+        <a href="#" data-wa data-wa-msg="Hola, quiero información sobre el servicio de explanaciones.">Consultar por WhatsApp</a>
+      </div>
     </div>
   </div>
 </section>
