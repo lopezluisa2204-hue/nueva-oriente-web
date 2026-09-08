@@ -43,26 +43,6 @@
       "tag": "CASA EN VENTA",
       "pisos": "1",
       "ubicacion": "Vereda La Clara, Guarne - Antioquia"
-    },
-    {
-      "habitaciones": "0",
-      "precio": 1500000000,
-      "mensajeWa": "Hola, Nueva Oriente quiero saber sobre el Lote Vereda La Mejia 325",
-      "slug": "LOTE VEREDA LA MEJIA 325",
-      "area": "0",
-      "descripcion": [
-        "Lote industrial ubicado en la vereda La Mejia del municipio de Guarne, Antioquia, cuenta con 15 hectareas..."
-      ],
-      "fotos": [
-        "/img/lotelamejia.jpg",
-        "/img/lotelamejia1.jpg"
-      ],
-      "categoria": "Lote",
-      "banos": "00",
-      "titulo": "LOTE INDUSTRIAL",
-      "tag": "LOTE ",
-      "pisos": "0",
-      "ubicacion": "LOTE INDUSTRIAL VEREDA LA MEJIA, GUARNE - ANTIOQUIA"
     }
   ]
 }
