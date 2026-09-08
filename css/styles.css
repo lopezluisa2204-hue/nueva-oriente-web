@@ -56,8 +56,8 @@ a:focus-visible, button:focus-visible{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding-top:16px;
-  padding-bottom:16px;
+  padding-top:10px;
+  padding-bottom:10px;
 }
 .logo{
   display:flex;
@@ -65,7 +65,7 @@ a:focus-visible, button:focus-visible{
   gap:12px;
 }
 .logo-mark{
-  width:60px;height:60px;flex-shrink:0;
+  width:84px;height:84px;flex-shrink:0;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -73,7 +73,7 @@ a:focus-visible, button:focus-visible{
 .logo-mark img{width:100%;height:100%;object-fit:contain;}
 .logo-text{
   font-family:'Fraunces', serif;
-  font-size:1.4rem;
+  font-size:1.55rem;
   line-height:1.1;
   color:var(--ink);
 }
@@ -580,8 +580,8 @@ a:focus-visible, button:focus-visible{
   .spec-list{grid-template-columns:repeat(2,1fr);padding:18px;}
   .hero-actions{flex-direction:column;align-items:stretch;}
   .hero-actions .btn{justify-content:center;}
-  .logo-text{font-size:1.15rem;}
-  .logo-mark{width:50px;height:50px;}
+  .logo-text{font-size:1.3rem;}
+  .logo-mark{width:66px;height:66px;}
   .wa-float{width:52px;height:52px;bottom:16px;right:16px;}
 }
 
