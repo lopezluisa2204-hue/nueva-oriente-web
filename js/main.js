@@ -37,7 +37,10 @@ function formatPrice(n) {
 async function loadProperties() {
   const res = await fetch("data/properties.json", { cache: "no-store" });
   if (!res.ok) throw new Error("No se pudo cargar el catálogo de propiedades");
-  return res.json();
+  const data = await res.json();
+  // El panel de administrador (Decap CMS) guarda la lista dentro de la
+  // clave "items". Se admite también un array plano por compatibilidad.
+  return Array.isArray(data) ? data : (data.items || []);
 }
 
 // Pinta las tarjetas del catálogo en index.html dentro de #propertyGrid.
