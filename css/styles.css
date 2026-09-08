@@ -129,8 +129,8 @@ a:focus-visible, button:focus-visible{
 }
 .dropdown-menu a:hover{background:rgba(255,255,255,.06);}
 .nav-cta{
-  background:var(--whatsapp);
-  color:#fff !important;
+  background:var(--brick);
+  color:var(--paper) !important;
   padding:9px 16px;
   border:none;
   display:inline-flex;
@@ -139,7 +139,7 @@ a:focus-visible, button:focus-visible{
   font-weight:500;
   font-size:.9rem;
 }
-.nav-cta:hover{background:var(--whatsapp-dark);}
+.nav-cta:hover{background:var(--brass);}
 .menu-toggle{
   display:none;
   background:none;
@@ -207,10 +207,10 @@ a:focus-visible, button:focus-visible{
 }
 .btn-brass:hover{background:rgba(255,255,255,.06);}
 .btn-whatsapp{
-  background:var(--whatsapp);
-  color:#fff;
+  background:var(--brick);
+  color:var(--paper);
 }
-.btn-whatsapp:hover{background:var(--whatsapp-dark);}
+.btn-whatsapp:hover{background:var(--brass);}
 .hero-photo{
   position:relative;
   overflow:hidden;
