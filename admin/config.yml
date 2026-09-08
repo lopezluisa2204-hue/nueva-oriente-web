@@ -1,0 +1,45 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Guarda cada cambio como un commit normal en el repositorio.
+local_backend: false
+
+media_folder: "img"
+public_folder: "/img"
+
+collections:
+  - name: "properties"
+    label: "Propiedades"
+    files:
+      - file: "data/properties.json"
+        label: "Catálogo de propiedades"
+        name: "catalogo"
+        description: "Agrega, edita, reordena o elimina propiedades del catálogo. Cada tarjeta nueva aparece automáticamente en la página principal."
+        fields:
+          - label: "Propiedades"
+            name: "items"
+            widget: "list"
+            label_singular: "Propiedad"
+            summary: "{{fields.titulo}} — {{fields.ubicacion}}"
+            fields:
+              - {label: "Identificador (slug)", name: "slug", widget: "string", hint: "Único para cada propiedad, sin espacios ni tildes. Ejemplo: 3"}
+              - {label: "Etiqueta", name: "tag", widget: "string", default: "CASA EN VENTA"}
+              - {label: "Título", name: "titulo", widget: "string", hint: "Ejemplo: Casa en el barrio El Poblado"}
+              - {label: "Precio (solo números, sin puntos ni $)", name: "precio", widget: "number", value_type: "int"}
+              - {label: "Ubicación", name: "ubicacion", widget: "string", hint: "Ejemplo: Barrio El Poblado, Medellín"}
+              - {label: "Habitaciones", name: "habitaciones", widget: "string", default: "3"}
+              - {label: "Baños", name: "banos", widget: "string", default: "2"}
+              - {label: "Área construida (con m²)", name: "area", widget: "string", hint: "Ejemplo: 120 m²"}
+              - {label: "Pisos", name: "pisos", widget: "string", default: "1"}
+              - label: "Descripción"
+                name: "descripcion"
+                widget: "list"
+                hint: "Un párrafo por línea."
+                field: {label: "Párrafo", name: "parrafo", widget: "text"}
+              - label: "Fotos"
+                name: "fotos"
+                widget: "list"
+                hint: "La primera foto es la principal (tarjeta y foto grande de la ficha). Puedes subir las imágenes directamente aquí."
+                field: {label: "Foto", name: "foto", widget: "image"}
+              - {label: "Mensaje de WhatsApp para esta propiedad", name: "mensajeWa", widget: "string", required: false, hint: "Si lo dejas vacío, se genera uno automático con el título."}

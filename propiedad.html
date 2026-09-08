@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propiedad — Nueva Oriente</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><img src="img/logo-nueva-oriente-transparente.png" alt="Logo Nueva Oriente"></span>
+      <span class="logo-text">Nueva Oriente<span>INMOBILIARIA</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#propiedades">Propiedades</a>
+      <a href="index.html#nosotros">Sobre nosotros</a>
+      <a href="index.html#contacto">Contacto</a>
+      <a class="nav-cta" data-wa data-wa-msg="Hola, quiero más información sobre sus propiedades." href="#">Escribir por WhatsApp</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<!-- Todo el contenido de esta ficha se pinta desde data/properties.json,
+     buscando la propiedad cuyo "slug" coincide con ?id= en la URL.
+     Ver renderDetail() en js/main.js. -->
+<div class="wrap" id="propertyDetail">
+  <p style="color:var(--text-soft);padding:40px 0;">Cargando propiedad…</p>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <span>© 2026 Nueva Oriente</span>
+      <a href="admin/" style="color:var(--text-soft);font-size:.8rem;">Acceso administrador</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -65,46 +65,10 @@
       <h2>Propiedades disponibles</h2>
     </div>
 
-    <div class="property-grid">
-
-      <article class="property-card">
-        <a href="propiedad-1.html">
-          <div class="property-photo">
-            <img src="img/sala-1.jpg" alt="Sala de la propiedad de ejemplo">
-          </div>
-        </a>
-        <div class="property-body">
-          <span class="property-tag">CASA EN VENTA</span>
-          <a href="propiedad-1.html"><h3 class="property-price">$ 600.000.000</h3></a>
-          <p class="property-loc">Barrio san Francisco, Guarne - Antiquia</p>
-          <div class="property-specs">
-            <span>4 hab.</span>
-            <span>3 baños</span>
-            <span>00 m²</span>
-          </div>
-          <a href="propiedad-1.html" class="property-link">Ver ficha completa</a>
-        </div>
-      </article>
-
-      <article class="property-card">
-  <a href="propiedad-2.html">
-    <div class="property-photo">
-      <img src="img/laclara1.jpg" alt="Casa campestre">
-    </div>
-  </a>
-  <div class="property-body">
-    <span class="property-tag">CASA EN VENTA</span>
-    <a href="propiedad-2.html"><h3 class="property-price">$ 450.000.000</h3></a>
-    <p class="property-loc">Vereda La Clara, Guarne - Antioquia</p>
-    <div class="property-specs">
-      <span>3 hab.</span>
-      <span>2 baños</span>
-      <span>120 m²</span>
-    </div>
-    <a href="propiedad-2.html" class="property-link">Ver ficha completa</a>
-  </div>
-</article>
-
+    <!-- Las tarjetas se pintan solas desde data/properties.json (js/main.js).
+         Ese archivo es el que edita el panel de administrador en /admin. -->
+    <div class="property-grid" id="propertyGrid">
+      <p style="color:var(--text-soft);">Cargando propiedades…</p>
     </div>
   </div>
 </section>
@@ -137,6 +101,7 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 Nueva Oriente</span>
+      <a href="admin/" style="color:var(--text-soft);font-size:.8rem;">Acceso administrador</a>
     </div>
   </div>
 </footer>
