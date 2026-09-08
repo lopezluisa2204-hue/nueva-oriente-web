@@ -158,12 +158,12 @@ a:focus-visible, button:focus-visible{
 .hero .wrap{
   display:grid;
   grid-template-columns:1fr 1.2fr;
-  gap:0;
-  align-items:stretch;
-  padding:0;
+  gap:48px;
+  align-items:center;
+  padding:56px 24px;
 }
 .hero-copy{
-  padding:64px 24px 64px 0;
+  padding:0;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -215,6 +215,9 @@ a:focus-visible, button:focus-visible{
   position:relative;
   overflow:hidden;
   min-height:420px;
+  border-radius:6px;
+  border:1px solid var(--line);
+  box-shadow:0 20px 40px rgba(0,0,0,.35);
 }
 .hero-photo img{
   width:100%;
