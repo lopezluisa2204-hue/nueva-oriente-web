@@ -3,11 +3,11 @@
     {
       "habitaciones": "4",
       "precio": 600000000,
-      "mensajeWa": "Hola Nueva Oriente, quiero más información sobre la casa en venta ubicada en el barrio San Francisco en Guarne - Antioquia",
+      "mensajeWa": "",
       "slug": "1",
       "area": "00 m²",
       "descripcion": [
-        "Casa de 4 plantas, habitacion principal en el sotano con su respectivo baño, el primer piso cuenta con sala, comedor, cocina y baño social. El segundo piso cuenta con dos habitaciones y un baño compartido y por ultimo el tercer piso el patio amplio y otra habitacion."
+        "Casa de 3 plantas mas sotano, habitacion principal en el sotano con su respectivo baño, el primer piso cuenta con sala, comedor, cocina y baño social. El segundo piso cuenta con dos habitaciones y un baño compartido y por ultimo el tercer piso el patio amplio y otra habitacion."
       ],
       "fotos": [
         "img/sala-1.jpg",
@@ -15,10 +15,10 @@
         "img/alcoba-1.jpg",
         "img/alcoba-2.jpg"
       ],
+      "categoria": "Casa",
       "banos": "3",
       "titulo": "Casa en venta",
       "tag": "CASA EN VENTA",
-      "categoria": "Casa",
       "pisos": "3",
       "ubicacion": "Barrio san Francisco, Guarne - Antioquia"
     },
@@ -37,18 +37,19 @@
         "img/laclara3.jpg",
         "img/laclara4.jpg"
       ],
+      "categoria": "Finca",
       "banos": "2",
       "titulo": "Casa campestre",
       "tag": "CASA EN VENTA",
-      "categoria": "Finca",
       "pisos": "1",
       "ubicacion": "Vereda La Clara, Guarne - Antioquia"
     },
     {
-      "habitaciones": "",
+      "habitaciones": "0",
       "precio": 1500000000,
       "mensajeWa": "Hola, Nueva Oriente quiero saber sobre el Lote Vereda La Mejia 325",
       "slug": "LOTE VEREDA LA MEJIA 325",
+      "area": "0",
       "descripcion": [
         "Lote industrial ubicado en la vereda La Mejia del municipio de Guarne, Antioquia, cuenta con 15 hectareas..."
       ],
@@ -56,11 +57,11 @@
         "/img/lotelamejia.jpg",
         "/img/lotelamejia1.jpg"
       ],
-      "banos": "",
+      "categoria": "Lote",
+      "banos": "00",
       "titulo": "LOTE INDUSTRIAL",
       "tag": "LOTE ",
-      "categoria": "Lote",
-      "pisos": "",
+      "pisos": "0",
       "ubicacion": "LOTE INDUSTRIAL VEREDA LA MEJIA, GUARNE - ANTIOQUIA"
     }
   ]
