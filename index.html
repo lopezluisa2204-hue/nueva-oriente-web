@@ -6,6 +6,20 @@
 <title>Nueva Oriente — Inmobiliaria</title>
 <meta name="description" content="Catálogo de propiedades en venta. Contacto directo por WhatsApp.">
 <link rel="stylesheet" href="css/styles.css">
+<!-- Detecta enlaces de invitación/confirmación de Netlify Identity que
+     lleguen a esta página (por correo) y abre el formulario de contraseña. -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", (user) => {
+    if (!user) {
+      window.netlifyIdentity.on("login", () => {
+        document.location.href = "/admin/";
+      });
+    }
+  });
+}
+</script>
 </head>
 <body>
 
