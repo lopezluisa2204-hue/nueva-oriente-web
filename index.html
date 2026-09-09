@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nueva Oriente — Inmobiliaria</title>
+<meta name="description" content="Catálogo de propiedades en venta. Contacto directo por WhatsApp.">
+<link rel="stylesheet" href="css/styles.css">
+<!-- Detecta enlaces de invitación/confirmación de Netlify Identity que
+     lleguen a esta página (por correo) y abre el formulario de contraseña. -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", (user) => {
+    if (!user) {
+      window.netlifyIdentity.on("login", () => {
+        document.location.href = "/admin/";
+      });
+    }
+  });
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><img src="img/logo-nueva-oriente-transparente.png" alt="Logo Nueva Oriente"></span>
+      <span class="logo-text">Nueva Oriente<span>INMOBILIARIA</span></span>
+    </a>
+    <nav class="nav-links">
+      <div class="nav-item">
+        <a href="index.html#propiedades" class="dropdown-toggle">Propiedades</a>
+        <div class="dropdown-menu">
+          <a href="index.html?categoria=Casa#propiedades">Casas</a>
+          <a href="index.html?categoria=Apartamento#propiedades">Apartamentos</a>
+          <a href="index.html?categoria=Lote#propiedades">Lotes</a>
+          <a href="index.html?categoria=Finca#propiedades">Fincas</a>
+          <a href="index.html?categoria=Bodega#propiedades">Bodegas</a>
+        </div>
+      </div>
+      <a href="index.html#servicios">Servicios</a>
+      <a href="index.html#nosotros">Sobre nosotros</a>
+      <a href="index.html#contacto">Contacto</a>
+      <a class="nav-cta" data-wa data-wa-msg="Hola, quiero más información sobre sus propiedades." href="#">¡Contáctanos!</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">Venta de propiedades</p>
+      <h1>Un hogar con historia, listo para la tuya.</h1>
+      <p>Propiedades seleccionadas personalmente, con información clara y acompañamiento directo en cada paso de la compra.</p>
+      <div class="hero-actions">
+        <a href="#propiedades" class="btn btn-brass">Ver propiedades</a>
+        <a href="#" class="btn btn-whatsapp" data-wa data-wa-msg="Hola, quiero más información sobre sus propiedades.">¡Contáctanos!</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="img/Portada.jpg" alt="Una de nuestras propiedades en venta">
+    </div>
+  </div>
+</section>
+
+<section class="strip">
+  <div class="wrap">
+    <div class="strip-item">
+      <h3>Atención directa</h3>
+      <p>Hablamos directamente por WhatsApp, sin intermediarios ni filas de espera.</p>
+    </div>
+    <div class="strip-item">
+      <h3>Información completa</h3>
+      <p>Cada propiedad incluye fotos reales, ficha técnica y ubicación detallada.</p>
+    </div>
+    <div class="strip-item">
+      <h3>Acompañamiento</h3>
+      <p>Te guiamos en todo el proceso, desde la primera visita hasta el cierre del negocio.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="propiedades">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Propiedades disponibles</h2>
+    </div>
+
+    <!-- Filtros por categoría (Lotes, Casas, Apartamentos, Fincas, Bodegas).
+         Se pintan y funcionan desde js/main.js, junto con las tarjetas. -->
+    <div class="filter-pills" id="filterPills"></div>
+
+    <!-- Las tarjetas se pintan solas desde data/properties.json (js/main.js).
+         Ese archivo es el que edita el panel de administrador en /admin. -->
+    <div class="property-grid" id="propertyGrid">
+      <p style="color:var(--text-soft);">Cargando propiedades…</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="servicios" style="background:var(--paper-2);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Servicios</h2>
+      <p>Además de la venta de propiedades, ofrecemos estos servicios técnicos.</p>
+    </div>
+    <div class="services-carousel" id="servicesCarousel">
+      <button type="button" class="carousel-arrow carousel-prev" id="servicesPrev" aria-label="Servicio anterior">‹</button>
+      <div class="services-track" id="servicesTrack">
+        <div class="service-card">
+          <span class="service-emoji" aria-hidden="true">📐</span>
+          <h3>Licencias</h3>
+          <p>Gestión y asesoría en:</p>
+          <ul>
+            <li>Licencias de construcción</li>
+            <li>Licencias para movimientos de tierra</li>
+            <li>Licencias de subdivisión</li>
+          </ul>
+          <a href="#" data-wa data-wa-msg="Hola, quiero información sobre el servicio de licencias.">Consultar por WhatsApp</a>
+        </div>
+        <div class="service-card">
+          <span class="service-emoji" aria-hidden="true">⚖️</span>
+          <h3>Asesoría legal</h3>
+          <p>Acompañamiento jurídico especializado en propiedad raíz:</p>
+          <ul>
+            <li>Estudio de títulos</li>
+            <li>Compraventas</li>
+            <li>Sucesiones</li>
+            <li>Documentos privados</li>
+          </ul>
+          <a href="#" data-wa data-wa-msg="Hola, quiero información sobre el servicio de asesoría legal.">Consultar por WhatsApp</a>
+        </div>
+        <div class="service-card">
+          <span class="service-emoji" aria-hidden="true">📊</span>
+          <h3>Avalúos</h3>
+          <p>Valoración profesional de inmuebles para:</p>
+          <ul>
+            <li>Avalúos comerciales</li>
+            <li>Trámites y procesos inmobiliarios</li>
+            <li>Otros requerimientos específicos</li>
+          </ul>
+          <a href="#" data-wa data-wa-msg="Hola, quiero información sobre el servicio de avalúos.">Consultar por WhatsApp</a>
+        </div>
+        <div class="service-card">
+          <span class="service-emoji" aria-hidden="true">🌿</span>
+          <h3>Desarrollo</h3>
+          <p>Planeación y ejecución de proyectos:</p>
+          <ul>
+            <li>Explanaciones</li>
+            <li>Paisajismo</li>
+            <li>Urbanismo</li>
+            <li>Viabilidades</li>
+            <li>Desarrollo y adecuación de terrenos</li>
+          </ul>
+          <a href="#" data-wa data-wa-msg="Hola, quiero información sobre el servicio de desarrollo.">Consultar por WhatsApp</a>
+        </div>
+        <div class="service-card">
+          <span class="service-emoji" aria-hidden="true">🏗️</span>
+          <h3>Construcción</h3>
+          <p>Soluciones integrales para proyectos inmobiliarios y de construcción:</p>
+          <ul>
+            <li>Asesorías</li>
+            <li>Paquetes arquitectónicos</li>
+            <li>Diseños y paquetes estructurales</li>
+            <li>Estudios de suelos</li>
+            <li>Interventorías</li>
+            <li>Obras civiles</li>
+          </ul>
+          <a href="#" data-wa data-wa-msg="Hola, quiero información sobre el servicio de construcción.">Consultar por WhatsApp</a>
+        </div>
+      </div>
+      <button type="button" class="carousel-arrow carousel-next" id="servicesNext" aria-label="Siguiente servicio">›</button>
+    </div>
+    <div class="carousel-dots" id="servicesDots"></div>
+  </div>
+</section>
+
+<section class="section" id="nosotros">
+  <div class="wrap" style="max-width:1040px;">
+    <div class="about-layout">
+      <div class="about-copy">
+        <div class="section-head" style="border:none;">
+          <h2>Sobre Nueva Oriente</h2>
+        </div>
+        <p style="color:var(--text-soft);">Hemos acompañado a cientos de familias e inversionistas en procesos de compra y venta de propiedades, construyendo una reputación basada en la transparencia, el conocimiento del mercado local y un servicio personalizado en cada etapa del proceso. Nuestro equipo de asesores combina experiencia comprobada con un profundo conocimiento de las dinámicas del mercado inmobiliario en el Oriente Antioqueño, lo que les permite ofrecer a sus clientes asesoría precisa sobre precios, tendencias y oportunidades de inversión.</p>
+        <p style="color:var(--text-soft);">En Nueva Oriente entendemos que cada propiedad y cada cliente tienen necesidades particulares. Por eso, nuestro enfoque combina el respaldo de la experiencia con un servicio cercano y adaptado, acompañando a nuestros clientes desde la valoración hasta el cierre de cada negociación.</p>
+      </div>
+
+      <div class="filmstrip" aria-hidden="true">
+        <div class="filmstrip-frame"><img src="img/lotelamejia1.jpg" alt=""></div>
+        <div class="filmstrip-frame"><img src="img/lotelamejia.jpg" alt=""></div>
+        <div class="filmstrip-frame"><img src="img/laclara2.jpg" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer" id="contacto">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>NUEVA ORIENTE</h4>
+        <p style="max-width:280px;color:var(--text-soft);font-size:.9rem;">Venta de propiedades con acompañamiento personalizado.</p>
+      </div>
+      <div>
+        <h4>CONTACTO</h4>
+        <a href="#" data-wa data-wa-msg="Hola, quiero más información sobre sus propiedades.">WhatsApp directo</a>
+      </div>
+      <div>
+        <h4>REDES</h4>
+        <a href="https://www.facebook.com/share/1SzZXeqQwT/?mibextid=wwXIfr" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.instagram.com/nuevaorienteinmobiliaria?igsi=MWd4MTBwdmM0bzM3Zw%3D%3D&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Nueva Oriente</span>
+      <a href="admin/" style="color:var(--text-soft);font-size:.8rem;">Acceso administrador</a>
+    </div>
+  </div>
+</footer>
+
+<a href="#" class="wa-float" data-wa data-wa-msg="Hola, quiero más información sobre sus propiedades." aria-label="Escribir por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.6 0-3.1-.42-4.4-1.16l-.32-.18-3.02.79.8-2.94-.2-.32A7.94 7.94 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.4-5.6c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.17-.7-.62-1.18-1.39-1.32-1.63-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
+</a>
+
+<script src="js/main.js"></script>
+<script src="js/carousel.js"></script>
+</body>
+</html>
