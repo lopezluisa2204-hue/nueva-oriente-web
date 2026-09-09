@@ -379,7 +379,11 @@ section[class*="StyledAuthenticationPage"] span[class*="PageLogoIcon"], section[
 
 /* editor */
 [class*="EditorContainer"] [class*="card-splitPane"]{ background-color:var(--body-bg-color); }
-#preview-pane{ background-color:var(--body-bg-color); border-radius:0; }
+/* La vista previa usa fondo claro (no oscuro) porque Decap dibuja su texto
+   por defecto en negro dentro de esa zona: en fondo oscuro quedaba casi
+   ilegible. Con fondo claro tipo papel se lee bien siempre. */
+#preview-pane{ background-color:#F5F0E4; color:#16171A; border-radius:0; }
+#preview-pane, #preview-pane *{ color:#16171A !important; }
 .Resizer.vertical{ width:5px; border-right:1px solid var(--modal-border-color); }
 .Resizer.vertical::before{ content:none; }
 [class*="ButtonRound-button-EditorToggle"]{
@@ -435,8 +439,23 @@ section[class*="StyledAuthenticationPage"] span[class*="PageLogoIcon"], section[
 [class*=ToggleContainer-StyledToggle][aria-checked="false"] > span[class*="ToggleBackground"]{ background-color:var(--toggle-false-bg-color); }
 [class*=ToggleContainer-StyledToggle] > span[class*="ToggleHandle"]{ background-color:var(--toggle-handle-color); }
 
-/* listas / objetos anidados */
-[class*="listControlItem"]{ border:1px solid var(--widgets-border-color); border-radius:6px; }
+/* listas / objetos anidados (incluye las filas de "Propiedades" con la
+   flecha, el título y la X para eliminar) */
+[class*="listControlItem"],
+[class*="ObjectControl"],
+[class*="SortableListItem"],
+[class*="objectWidgetTopLevelForm"]
+{
+  background-color:var(--card-bg);
+  color:var(--primary-text-color);
+  border:1px solid var(--widgets-border-color);
+  border-radius:6px;
+}
+[class*="listControlItem"] *,
+[class*="ObjectControl"] *,
+[class*="SortableListItem"] *,
+[class*="objectWidgetTopLevelForm"] *
+{ color:inherit; }
 [class*="TopBarContainer"], [class*="StyledListItemTopBar"], [class*="NestedObjectLabel"]{
   background-color:var(--topbar-bg-color);
   border-top-right-radius:6px;
