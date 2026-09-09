@@ -107,23 +107,37 @@ if (window.netlifyIdentity) {
       <h2>Servicios</h2>
       <p>Además de la venta de propiedades, ofrecemos estos servicios técnicos.</p>
     </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>Topografías</h3>
-        <p>Levantamientos y estudios topográficos del terreno, con planos y medidas precisas.</p>
-        <a href="#" data-wa data-wa-msg="Hola, quiero información sobre el servicio de topografía.">Consultar por WhatsApp</a>
+    <div class="services-carousel" id="servicesCarousel">
+      <button type="button" class="carousel-arrow carousel-prev" id="servicesPrev" aria-label="Servicio anterior">‹</button>
+      <div class="services-track" id="servicesTrack">
+        <div class="service-card">
+          <span class="service-emoji" aria-hidden="true">📐</span>
+          <h3>Topografías</h3>
+          <p>Levantamientos y estudios topográficos del terreno, con planos y medidas precisas.</p>
+          <a href="#" data-wa data-wa-msg="Hola, quiero información sobre el servicio de topografía.">Consultar por WhatsApp</a>
+        </div>
+        <div class="service-card">
+          <span class="service-emoji" aria-hidden="true">💰</span>
+          <h3>Avalúos</h3>
+          <p>Avalúo comercial de tu propiedad, con soporte para venta, compra o trámites bancarios.</p>
+          <a href="#" data-wa data-wa-msg="Hola, quiero información sobre el servicio de avalúos.">Consultar por WhatsApp</a>
+        </div>
+        <div class="service-card">
+          <span class="service-emoji" aria-hidden="true">🚜</span>
+          <h3>Explanaciones</h3>
+          <p>Explanación y adecuación de terrenos para construcción.</p>
+          <a href="#" data-wa data-wa-msg="Hola, quiero información sobre el servicio de explanaciones.">Consultar por WhatsApp</a>
+        </div>
+        <div class="service-card">
+          <span class="service-emoji" aria-hidden="true">⚖️</span>
+          <h3>Asesoría jurídica</h3>
+          <p>Acompañamiento legal en la compra, venta o trámites de tu propiedad.</p>
+          <a href="#" data-wa data-wa-msg="Hola, quiero información sobre el servicio de asesoría jurídica.">Consultar por WhatsApp</a>
+        </div>
       </div>
-      <div class="service-card">
-        <h3>Avalúos</h3>
-        <p>Avalúo comercial de tu propiedad, con soporte para venta, compra o trámites bancarios.</p>
-        <a href="#" data-wa data-wa-msg="Hola, quiero información sobre el servicio de avalúos.">Consultar por WhatsApp</a>
-      </div>
-      <div class="service-card">
-        <h3>Explanaciones</h3>
-        <p>Explanación y adecuación de terrenos para construcción.</p>
-        <a href="#" data-wa data-wa-msg="Hola, quiero información sobre el servicio de explanaciones.">Consultar por WhatsApp</a>
-      </div>
+      <button type="button" class="carousel-arrow carousel-next" id="servicesNext" aria-label="Siguiente servicio">›</button>
     </div>
+    <div class="carousel-dots" id="servicesDots"></div>
   </div>
 </section>
 
@@ -165,5 +179,6 @@ if (window.netlifyIdentity) {
 </a>
 
 <script src="js/main.js"></script>
+<script src="js/carousel.js"></script>
 </body>
 </html>
