@@ -5,9 +5,9 @@
       "precio": 600000000,
       "mensajeWa": "",
       "slug": "1",
-      "area": "00 m²",
+      "area": "150 m²",
       "descripcion": [
-        "Casa de 3 plantas mas sotano, habitacion principal en el sotano con su respectivo baño, el primer piso cuenta con sala, comedor, cocina y baño social. El segundo piso cuenta con dos habitaciones y un baño compartido y por ultimo el tercer piso el patio amplio y otra habitacion."
+        "Casa de 3 plantas con sótano, habitación principal en el sótano con su respectivo baño, el primer piso cuenta con sala, comedor, cocina y baño social. El segundo piso cuenta con dos habitaciones y un baño compartido y por ultimo el tercer piso el patio amplio y otra habitación."
       ],
       "fotos": [
         "img/sala-1.jpg",
@@ -18,9 +18,9 @@
       "categoria": "Casa",
       "banos": "3",
       "titulo": "Casa en venta",
-      "tag": "CASA EN VENTA",
+      "tag": "CASA EN VENTA 201",
       "pisos": "3",
-      "ubicacion": "Barrio san Francisco, Guarne - Antioquia"
+      "ubicacion": "Guarne - Antioquia"
     },
     {
       "habitaciones": "3",
