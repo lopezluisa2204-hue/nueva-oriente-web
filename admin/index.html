@@ -5,6 +5,475 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 <title>Panel de administrador — Nueva Oriente</title>
+<style>
+/* Paleta del panel: los mismos tonos oscuros y dorados de la página
+   principal (grafito/negro con acento dorado). Decap CMS no ofrece un
+   sistema de temas oficial, así que esto se aplica con selectores por
+   coincidencia de clase ([class*="..."]), que son estables porque Decap
+   incluye el nombre del componente dentro del nombre de clase generado. */
+:root{
+  --body-bg-color:#16171A;
+  --primary-text-color:#F5F0E4;
+  --secondary-text-color:#9C9585;
+  --success-text-color:#3fb950;
+  --danger-text-color:#e5534b;
+  --disabled-text-color:#5c584c;
+  --url-text-color:#B8963C;
+  --input-bg-color:#1F2124;
+  --input-border-color:#2A2C30;
+  --input-placeholder-color:#9C9585;
+  --btn-gray-default-bg:#1F2124;
+  --btn-gray-default-border:#2A2C30;
+  --btn-gray-hover-bg:#262830;
+  --btn-gray-hover-border:#B79B5B;
+  --btn-gray-focus-bg:#1F2124;
+  --btn-gray-disabled-text:#5c584c;
+  --btn-gray-disabled-bg:#1F2124;
+  --btn-gray-disabled-border:#2A2C30;
+  --btn-red-default-text:#e5534b;
+  --btn-red-default-bg:#1F2124;
+  --btn-red-default-border:#2A2C30;
+  --btn-red-hover-text:#fff;
+  --btn-red-hover-bg:#a83a33;
+  --btn-red-hover-border:#e5534b;
+  --btn-red-active-bg:#7a2b26;
+  --btn-red-active-border:rgb(245 240 228 / 10%);
+  --btn-red-disabled-text:rgb(229 83 75 / 50%);
+  --btn-red-disabled-bg:#16171A;
+  --btn-green-default-text:#16171A;
+  --btn-green-default-bg:#B8963C;
+  --btn-green-default-border:#B79B5B;
+  --btn-green-hover-bg:#C7A64B;
+  --btn-green-hover-border:#D4B25C;
+  --btn-green-active-bg:#A5842F;
+  --btn-green-disabled-text:rgb(22 23 26 / 50%);
+  --btn-green-disabled-bg:rgb(184 150 60 / 45%);
+  --btn-green-disabled-border:transparent;
+  --scrollbar-thumb-color:#3a3d42;
+  --scrollbar-thumb-hover-color:#4a4d52;
+  --dropdownlist-bg:#1F2124;
+  --dropdownlist-border:#2A2C30;
+  --dropdownlist-shadow:0 16px 32px rgba(0,0,0,.5);
+  --dropdownitem-bg:#1F2124;
+  --dropdownitem-hover-bg:#262830;
+  --header-bg:#16171A;
+  --header-button-text:#9C9585;
+  --header-button-text-hover:#F5F0E4;
+  --header-button-text-active:#B8963C;
+  --header-dropdownitem-hover-text:#16171A;
+  --header-dropdownitem-hover-bg:#B8963C;
+  --card-bg:#1F2124;
+  --card-border:#2A2C30;
+  --card-hover-bg:#262830;
+  --modal-bg-color:#16171A;
+  --modal-border-color:#2A2C30;
+  --modal-box-shadow:0 0 24px rgba(0,0,0,.6);
+  --card-active-border:#B8963C;
+  --checkerboard-dark-color:#1F2124;
+  --checkerboard-bg-color:#2A2C30;
+  --widgets-bg-color:#101113;
+  --widgets-label-bg-color:#1F2124;
+  --widgets-border-color:#2A2C30;
+  --widgets-active-label-bg-color:#B8963C;
+  --widgets-active-border-color:#B8963C;
+  --widgets-error-label-bg-color:#e5534b;
+  --widgets-error-border-color:#e5534b;
+  --rdtPicker-bg-color:#1F2124;
+  --rdtPicker-border-color:#2A2C30;
+  --rdtPicker-shadow:0 16px 32px rgb(0 0 0 / 50%);
+  --rdtPicker-hover-bg-color:#262830;
+  --rdtPicker-active-bg-color:#B8963C;
+  --color-picker-bg-color:#1F2124;
+  --color-picker-border-color:#2A2C30;
+  --color-picker-shadow:0 16px 32px rgb(0 0 0 / 50%);
+  --toggle-true-bg-color:#B8963C;
+  --toggle-false-bg-color:#2A2C30;
+  --toggle-handle-color:#DAD5C8;
+  --topbar-bg-color:#1F2124;
+  --short-code-bg-color:rgb(184 150 60 / 18%);
+  --code-block-bg-color:#1F2124;
+  --code-line-number-color:#9C9585;
+}
+body{
+  background-color:var(--body-bg-color);
+  color:var(--primary-text-color);
+}
+a{ font-size:inherit; color:var(--url-text-color); }
+h1,h2,h3,h4,h5,h6,p{ color:inherit; }
+::-webkit-scrollbar-thumb{ background-color:var(--scrollbar-thumb-color) !important; border:unset !important; border-radius:4px; }
+::-webkit-scrollbar-thumb:hover{ background-color:var(--scrollbar-thumb-hover-color) !important; }
+::-webkit-scrollbar-track{ background:var(--body-bg-color) !important; }
+iframe#netlify-identity-widget{ z-index:400 !important; }
+
+/* botones */
+[class*="button-default-gray"],
+[class*="button-medium-gray "],
+[class*="button-default-disabled"],
+[class*="button-default-lightBlue"],
+[class*="AddButton-button"],
+[class*="FileWidgetButton-button"],
+[class*="SaveButton-lightBlue"],
+[class*="StatusButton"],
+[class*="StyledDropdownButton"]:not([class*="grayText"]):not([class*="Publish"])
+{
+  color:var(--primary-text-color);
+  background-color:var(--btn-gray-default-bg);
+  border:1px solid;
+  border-color:var(--btn-gray-default-border);
+  border-radius:6px;
+  transition:.2s cubic-bezier(.3,0,.5,1);
+  transition-property:color,background-color,border-color;
+}
+[class*="button-default-gray"]:hover,
+[class*="button-medium-gray "]:hover,
+[class*="button-default-disabled"]:hover,
+[class*="button-default-lightBlue"]:hover,
+[class*="AddButton-button"]:hover,
+[class*="FileWidgetButton-button"]:hover,
+[class*="SaveButton-lightBlue"]:hover,
+[class*="StatusButton"]:hover,
+[class*="StyledDropdownButton"]:not([class*="grayText"]):not([class*="Publish"]):hover
+{
+  background-color:var(--btn-gray-hover-bg);
+  border-color:var(--btn-gray-hover-border);
+  transition-duration:.1s;
+}
+[class*="button-default-gray"]:focus,
+[class*="button-medium-gray "]:focus,
+[class*="button-default-disabled"]:focus,
+[class*="button-default-lightBlue"]:focus,
+[class*="AddButton-button"]:focus,
+[class*="FileWidgetButton-button"]:focus,
+[class*="SaveButton-lightBlue"]:focus,
+[class*="StatusButton"]:focus,
+[class*="StyledDropdownButton"]:not([class*="grayText"]):not([class*="Publish"]):focus
+{
+  color:var(--primary-text-color);
+  background-color:var(--btn-gray-focus-bg);
+}
+[class*="button-default-disabled"][disabled]{
+  color:var(--btn-gray-disabled-text);
+  background-color:var(--btn-gray-disabled-bg);
+  border:1px solid;
+  border-color:var(--btn-gray-disabled-border);
+  border-radius:6px;
+}
+[class*="utton-lightRed"],
+[class*="FileWidgetButtonRemove-button"],
+[class*="DeleteButton"]
+{
+  color:var(--btn-red-default-text);
+  background-color:var(--btn-red-default-bg);
+  border:1px solid;
+  border-color:var(--btn-red-default-border);
+  border-radius:6px;
+  transition:.2s cubic-bezier(.3,0,.5,1);
+  transition-property:color,background-color,border-color;
+}
+[class*="utton-lightRed"]:hover,
+[class*="FileWidgetButtonRemove-button"]:hover,
+[class*="DeleteButton"]:hover
+{
+  color:var(--btn-red-hover-text);
+  background-color:var(--btn-red-hover-bg);
+  border-color:var(--btn-red-hover-border);
+  transition-duration:.1s;
+}
+[class*="utton-lightRed"]:focus,
+[class*="FileWidgetButtonRemove-button"]:focus,
+[class*="DeleteButton"]:focus
+{ border-color:var(--btn-red-hover-border); }
+[class*="utton-lightRed"]:active,
+[class*="FileWidgetButtonRemove-button"]:active,
+[class*="DeleteButton"]:active
+{
+  color:var(--btn-red-hover-text);
+  background-color:var(--btn-red-active-bg);
+  border-color:var(--btn-red-active-border);
+}
+[class*="utton-lightRed"][disabled]{
+  color:var(--btn-red-disabled-text);
+  background-color:var(--btn-red-disabled-bg);
+  border:1px solid;
+  border-color:var(--btn-red-default-border);
+  border-radius:6px;
+}
+[class*="button-green"],
+[class*="PublishButton"],
+[class*="publishedButton"]
+{
+  color:var(--btn-green-default-text);
+  background-color:var(--btn-green-default-bg);
+  border:1px solid;
+  border-color:var(--btn-green-default-border);
+  border-radius:6px;
+  transition:.2s cubic-bezier(.3,0,.5,1);
+  transition-property:color,background-color,border-color;
+}
+[class*="button-green"]:hover,
+[class*="PublishButton"]:hover,
+[class*="publishedButton"]:hover
+{
+  background-color:var(--btn-green-hover-bg);
+  border-color:var(--btn-green-hover-border);
+  transition-duration:.1s;
+}
+[class*="button-green"]:active,
+[class*="PublishButton"]:active,
+[class*="publishedButton"]:active
+{ background-color:var(--btn-green-active-bg); }
+[class*="button-green"]:focus,
+[class*="PublishButton"]:focus,
+[class*="publishedButton"]:focus
+{
+  background-color:var(--btn-green-active-bg);
+  border-color:var(--btn-green-hover-border);
+}
+[class*="button-green"][disabled],
+[class*="PublishButton"][disabled]
+{
+  color:var(--btn-green-disabled-text);
+  background-color:var(--btn-green-disabled-bg);
+  border:1px solid;
+  border-color:var(--btn-green-disabled-border);
+  border-radius:6px;
+}
+
+/* notificaciones */
+[class*="toast-success"]{
+  color:var(--success-text-color);
+  background-color:var(--dropdownitem-bg);
+  box-shadow:var(--dropdownlist-shadow);
+  border-radius:6px;
+}
+[class*="toast-danger"]{
+  color:var(--danger-text-color);
+  background-color:var(--dropdownitem-bg);
+  box-shadow:var(--dropdownlist-shadow);
+  border-radius:6px;
+}
+
+/* menús desplegables */
+ul[class*="dropdownList"],
+ul[class*="Suggestions"],
+[class*="ControlContainer"] [class*="menu"]
+{
+  background-color:var(--dropdownlist-bg);
+  border:1px solid var(--dropdownlist-border);
+  border-radius:6px;
+  box-shadow:var(--dropdownlist-shadow);
+}
+ul[class*="dropdownList"] > [class*="dropdownItem"],
+ul[class*="Suggestions"] > li[class*="SuggestionItem"],
+[class*="ControlContainer"] [class*="menu"] [class*="option"]
+{
+  color:var(--primary-text-color);
+  background-color:var(--dropdownitem-bg);
+  border-width:0;
+}
+ul[class*="dropdownList"] > [class*="dropdownItem"]:hover,
+ul[class*="Suggestions"] > li[class*="SuggestionItem"]:hover,
+[class*="ControlContainer"] [class*="menu"] [class*="option"]:hover
+{
+  color:inherit;
+  background-color:var(--dropdownitem-hover-bg);
+}
+ul[class*="dropdownList"]::-webkit-scrollbar-track,
+ul[class*="Suggestions"]::-webkit-scrollbar-track,
+[class*="ControlContainer"] [class*="menu"] > div::-webkit-scrollbar-track
+{ background:var(--dropdownlist-bg) !important; }
+
+/* encabezado */
+header[class*="AppHeader"]{ background-color:var(--header-bg); }
+header [class*="AppHeaderButton"]{ color:var(--header-button-text); }
+header [class*="AppHeaderButton"]:hover, header [class*="AppHeaderButton"]:focus{ color:var(--header-button-text-hover); }
+header [class*="AppHeaderButton"].header-link-active{ color:var(--header-button-text-active); }
+header [class*="AppHeaderNavList"] [class*="IconWrapper"]{ color:inherit !important; }
+header ul[class*="dropdownList"] > [class*="dropdownItem"]:hover,
+[class*="EditorContainer"] > [class*="ToolbarContainer"] ul[class*="dropdownList"] > [class*="dropdownItem"]:hover
+{
+  color:var(--header-dropdownitem-hover-text);
+  background-color:var(--header-dropdownitem-hover-bg);
+  z-index:320;
+}
+[class*="EditorContainer"] > [class*="ToolbarContainer"]{ background-color:var(--header-bg); }
+[class*="EditorContainer"] > [class*="ToolbarContainer"] [class*="ToolbarSectionBackLink"]{ border-color:var(--btn-gray-default-border); }
+[class*="EditorContainer"] > [class*="ToolbarContainer"] [class*="ToolbarSectionBackLink"]:hover,
+[class*="EditorContainer"] > [class*="ToolbarContainer"] [class*="ToolbarSectionBackLink"]:focus
+{ background-color:var(--btn-gray-default-bg); }
+[class*="EditorContainer"] > [class*="ToolbarContainer"] [class*="ToolbarSectionBackLink"] [class*="BackArrow"],
+[class*="EditorContainer"] > [class*="ToolbarContainer"] [class*="ToolbarSectionBackLink"] [class*="BackCollection"]
+{ color:var(--primary-text-color); }
+[class*="EditorContainer"] > [class*="ToolbarContainer"] [class*="ToolbarSectionBackLink"] [class*="textBadgeSuccess"]{ color:var(--success-text-color); }
+[class*="EditorContainer"] > [class*="ToolbarContainer"] [class*="ToolbarSectionMeta"]{ border-color:var(--btn-gray-default-border); }
+
+/* tarjetas */
+[class*="CollectionContainer"] [class*="Container-card"],
+[class*="CollectionContainer"] [class*="ListCard-card"],
+[class*="CollectionContainer"] [class*="GridCard-card"],
+[class*="WorkflowContainer"] [class*="WorkflowTop-card-cardTop"],
+[class*="WorkflowContainer"] [class*="WorkflowCardContainer-card"],
+[class*="WorkflowContainer"] [class*="ColumnHeader"]
+{
+  background-color:var(--card-bg);
+  border:1px solid var(--card-border);
+  box-shadow:none;
+  border-radius:6px;
+}
+[class*="CollectionContainer"] [class*="GridCardLink"]{ color:var(--primary-text-color); background-color:unset; }
+[class*="CollectionContainer"] [class*="ListCardLink"]{ color:var(--primary-text-color); }
+[class*="CollectionContainer"] [class*="GridCardLink"] [class*="CardBody"]::after{ content:unset; }
+[class*="CollectionContainer"] [class*="ListCardLink"]:hover,
+[class*="CollectionContainer"] [class*="GridCardLink"]:hover,
+[class*="WorkflowContainer"] [class*="WorkflowCardContainer-card"]:hover
+{ color:inherit; background-color:var(--card-hover-bg); }
+[class*="CardButtonContainer"]{ background-color:inherit; }
+a[class*="AppHeaderTestRepoIndicator"], a[class*="AppHeaderSiteLink"]{ color:var(--secondary-text-color); }
+a[class*="RefreshPreviewButton"], a[class*="RefreshPreviewButton"] > [class*="IconWrapper"]{ color:var(--url-text-color); }
+
+/* login */
+section[class*="StyledAuthenticationPage"] a[class*="GoBackButtonStyle"]{ color:var(--secondary-text-color); }
+section[class*="StyledAuthenticationPage"] a[class*="GoBackButtonStyle"]>p[class*="ButtonText"]{ color:inherit; }
+section[class*="StyledAuthenticationPage"] span[class*="PageLogoIcon"], section[class*="StyledAuthenticationPage"] a[class*="GoBackButtonStyle"]:hover{ color:var(--primary-text-color); }
+
+/* barra lateral */
+[class*="SidebarHeading"]{ color:inherit; }
+[class*="SidebarNavLink"], [class*="TreeNavLink"]{ border-left:none; color:var(--header-button-text); }
+[class*="SidebarNavLink"]:hover, [class*="TreeNavLink"]:hover{ color:var(--header-button-text); background-color:var(--dropdownitem-hover-bg); }
+[class*="SidebarNavLink"].sidebar-active, [class*="TreeNavLink"].sidebar-active{ color:var(--header-button-text-active); background-color:var(--header-dropdownitem-hover-bg); }
+[class*="SearchContainer"] input[class*="SearchInput"]{ background-color:var(--input-bg-color); border:1px solid var(--input-border-color); color:inherit; }
+[class*="SearchContainer"] [class*="IconWrapper"]{ color:var(--input-placeholder-color); }
+[class*="SearchContainer"] input[class*="SearchInput"]::placeholder{ color:var(--input-placeholder-color); }
+
+/* colección / flujo de trabajo */
+[class*="CollectionControlsContainer"] [class*="ControlButton"]{ color:var(--header-button-text); }
+[class*="CollectionControlsContainer"] [class*="ControlButton"]:hover{ color:var(--header-button-text-hover); }
+[class*="CollectionControlsContainer"] [class*="ViewControlsButton-button"]{ color:var(--header-button-text); }
+[class*="CollectionControlsContainer"] [class*="ViewControlsButton-button"]:hover{ color:var(--header-button-text-hover); }
+[class*="GroupHeading"] [class*="cardTopDescription"]{ color:var(--secondary-text-color); }
+[class*="WorkflowContainer"] [class*="ColumnHeader"]{ color:var(--primary-text-color); }
+[class*="WorkflowLink"] [class*="CardCollection"], [class*="WorkflowLink"] [class*="CardTitle"]{ color:var(--primary-text-color); }
+[class*="WorkflowLink"] [class*="CardDate"], [class*="WorkflowLink"] [class*="CardBody"], p[class*="WorkflowTopDescription"]{ color:var(--secondary-text-color); }
+
+/* modales / medios */
+[class*="StyledModal"]{
+  background-color:var(--modal-bg-color);
+  box-shadow:var(--modal-box-shadow);
+  border:1px solid var(--modal-border-color);
+  border-radius:6px;
+}
+[class*="StyledModal"] [class*="CloseButton"]{
+  color:var(--primary-text-color);
+  background-color:var(--btn-gray-default-bg);
+  border:1px solid;
+  border-color:var(--btn-gray-default-border);
+}
+[class*="StyledModal"] [class*="checkerboard"]{
+  background-color:var(--checkerboard-bg-color);
+  border-bottom:2px solid var(--modal-border-color);
+  background-image:linear-gradient(45deg, var(--checkerboard-dark-color) 25%, transparent 25%, transparent 75%, var(--checkerboard-dark-color) 75%, var(--checkerboard-dark-color)),
+                    linear-gradient(45deg, var(--checkerboard-dark-color) 25%, transparent 25%, transparent 75%, var(--checkerboard-dark-color) 75%, var(--checkerboard-dark-color));
+}
+[class*="StyledModal"] [class*="DraftText"]{ color:inherit; background-color:var(--modal-border-color); padding:5px 8px; }
+[class*="StyledModal"] [class*="CardText"]{ color:inherit; }
+
+/* editor */
+[class*="EditorContainer"] [class*="card-splitPane"]{ background-color:var(--body-bg-color); }
+#preview-pane{ background-color:var(--body-bg-color); border-radius:0; }
+.Resizer.vertical{ width:5px; border-right:1px solid var(--modal-border-color); }
+.Resizer.vertical::before{ content:none; }
+[class*="ButtonRound-button-EditorToggle"]{
+  background-color:var(--btn-gray-default-bg);
+  border:1px solid;
+  border-color:var(--btn-gray-default-border);
+  transition:.2s cubic-bezier(.3,0,.5,1);
+  transition-property:color,background-color,border-color;
+}
+[class*="ButtonRound-button-EditorToggle"]:hover{
+  background-color:var(--btn-gray-hover-bg);
+  border-color:var(--btn-gray-hover-border);
+  transition-duration:.1s;
+}
+
+/* campos y widgets */
+[class*="FieldLabel"]::after{ background-color:var(--body-bg-color); }
+[class*="FieldLabel"]{
+  color:var(--primary-text-color);
+  background-color:var(--widgets-label-bg-color);
+  padding:3px 8px 2px;
+  text-transform:capitalize;
+}
+[class*="ControlContainer"] textarea,
+[class*="ControlContainer"] input[type="text"],
+[class*="ControlContainer"] input[type="number"],
+[class*="WidgetContainer"] textarea,
+[class*="WidgetContainer"] input
+{
+  color:inherit;
+  background-color:var(--widgets-bg-color);
+  border:1px solid var(--widgets-border-color);
+  border-radius:0 6px 6px;
+}
+[class*="ControlErrorsList"]{ color:var(--danger-text-color); }
+
+/* menú tipo select */
+[class*="ControlContainer"] div[class$="-control"]{ background-color:transparent; }
+[class*="ControlContainer"] div[class$="-control"] [class*="indicatorContainer"]{ color:var(--input-placeholder-color); }
+[class*="ControlContainer"] div[class$="-control"] [class*="indicatorContainer"]:hover{ color:var(--header-button-text-hover); }
+[class*="ControlContainer"] div[class$="-control"] [class*="-singleValue"]{ color:inherit; }
+
+/* imagen */
+[class*="ImageWrapper-checkerboard"]{
+  border:2px solid var(--widgets-border-color);
+  background-color:var(--checkerboard-bg-color);
+  background-image:linear-gradient(45deg, var(--checkerboard-dark-color) 25%, transparent 25%, transparent 75%, var(--checkerboard-dark-color) 75%, var(--checkerboard-dark-color)),
+                    linear-gradient(45deg, var(--checkerboard-dark-color) 25%, transparent 25%, transparent 75%, var(--checkerboard-dark-color) 75%, var(--checkerboard-dark-color));
+}
+
+/* interruptores (toggle) */
+[class*=ToggleContainer-StyledToggle][aria-checked="true"] > span[class*="ToggleBackground"]{ background-color:var(--toggle-true-bg-color); }
+[class*=ToggleContainer-StyledToggle][aria-checked="false"] > span[class*="ToggleBackground"]{ background-color:var(--toggle-false-bg-color); }
+[class*=ToggleContainer-StyledToggle] > span[class*="ToggleHandle"]{ background-color:var(--toggle-handle-color); }
+
+/* listas / objetos anidados */
+[class*="listControlItem"]{ border:1px solid var(--widgets-border-color); border-radius:6px; }
+[class*="TopBarContainer"], [class*="StyledListItemTopBar"], [class*="NestedObjectLabel"]{
+  background-color:var(--topbar-bg-color);
+  border-top-right-radius:6px;
+}
+[class*="TopBarContainer"] button[class*="ExpandButton"],
+[class*="StyledListItemTopBar"] [class*="TopBarButton"]
+{ color:var(--header-button-text); }
+[class*="TopBarContainer"] button[class*="ExpandButton"]:hover,
+[class*="StyledListItemTopBar"] [class*="TopBarButton"]:hover
+{ color:var(--header-button-text-hover); }
+
+/* editor de texto enriquecido (párrafos de descripción) */
+[class*="cms-editor"]{ border:1px solid var(--widgets-border-color); border-radius:0 6px 6px; }
+[class*="cms-editor"] [class*="ToolbarContainer"]{ background-color:var(--topbar-bg-color); border-top-right-radius:6px; }
+[class*="cms-editor"] [class*="ToolbarContainer"] button[class*="StyledToolbarButton"],
+[class*="cms-editor"] [class*="ToolbarContainer"] div[class*="ToolbarDropdownWrapper"]
+{ color:var(--header-button-text); }
+[class*="cms-editor"] [class*="ToolbarContainer"] button[class*="StyledToolbarButton"]:hover,
+[class*="cms-editor"] [class*="ToolbarContainer"] div[class*="ToolbarDropdownWrapper"]:hover
+{ color:var(--header-button-text-hover); }
+[class*="ToolbarToggleLabel"]{ color:var(--header-button-text); }
+[class*="cms-editor"] blockquote{ color:var(--secondary-text-color); border-left:3px solid var(--secondary-text-color); }
+[class*="cms-editor"] code[class*="StyledCode"]{ background-color:var(--short-code-bg-color); border-radius:6px; padding:4px 6px; }
+
+/* panel de ajustes del widget */
+[class*="ControlContainer"] [class*="SettingsPaneContainer"]{
+  color:var(--primary-text-color);
+  background-color:var(--dropdownlist-bg);
+  border-left:1px solid var(--dropdownlist-border);
+  overflow:hidden;
+}
+[class*="ControlContainer"] [class*="SettingsPaneContainer"] > label{ color:var(--primary-text-color); }
+[class*="ControlContainer"] [class*="SettingsPaneContainer"] [class$="-control"]{ border:1px solid var(--dropdownlist-border); }
+[class*="ControlContainer"] button[class*="StyledSettingsButton-button"]{ background-color:transparent; color:var(--header-button-text); }
+[class*="ControlContainer"] button[class*="StyledSettingsButton-button"]:hover{ color:var(--header-button-text-hover); }
+.CodeMirror-vscrollbar::-webkit-scrollbar-track, .CodeMirror-hscrollbar::-webkit-scrollbar-track{ background:var(--code-block-bg-color) !important; }
+</style>
 </head>
 <body>
 <!-- Panel de administración del catálogo (Decap CMS). Entra con el correo
