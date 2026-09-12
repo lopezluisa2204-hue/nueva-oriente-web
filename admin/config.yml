@@ -1,0 +1,51 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Guarda cada cambio como un commit normal en el repositorio.
+local_backend: false
+
+media_folder: "img"
+public_folder: "/img"
+
+collections:
+  - name: "properties"
+    label: "Propiedades"
+    files:
+      - file: "data/properties.json"
+        label: "Catálogo de propiedades"
+        name: "catalogo"
+        description: "Agrega, edita, reordena o elimina propiedades del catálogo. Cada tarjeta nueva aparece automáticamente en la página principal."
+        fields:
+          - label: "Propiedades"
+            name: "items"
+            widget: "list"
+            label_singular: "Propiedad"
+            summary: "{{fields.titulo}} — {{fields.ubicacion}}"
+            fields:
+              - {label: "Identificador (slug)", name: "slug", widget: "string", hint: "Único para cada propiedad, sin espacios ni tildes. Ejemplo: 3"}
+              - label: "Categoría"
+                name: "categoria"
+                widget: "select"
+                hint: "Define en qué filtro del menú 'Propiedades' aparece."
+                options: ["Lote", "Casa", "Apartamento", "Finca", "Bodega"]
+                default: "Casa"
+              - {label: "Etiqueta", name: "tag", widget: "string", default: "CASA EN VENTA"}
+              - {label: "Título", name: "titulo", widget: "string", hint: "Ejemplo: Casa en el barrio El Poblado"}
+              - {label: "Precio (solo números, sin puntos ni $)", name: "precio", widget: "number", value_type: "int"}
+              - {label: "Ubicación", name: "ubicacion", widget: "string", hint: "Ejemplo: Barrio El Poblado, Medellín"}
+              - {label: "Habitaciones", name: "habitaciones", widget: "string", required: false, hint: "Déjalo vacío si no aplica (por ejemplo, en un lote)."}
+              - {label: "Baños", name: "banos", widget: "string", required: false, hint: "Déjalo vacío si no aplica (por ejemplo, en un lote)."}
+              - {label: "Área construida (con m²)", name: "area", widget: "string", required: false, hint: "Ejemplo: 120 m². Déjalo vacío si no aplica."}
+              - {label: "Pisos", name: "pisos", widget: "string", required: false, hint: "Déjalo vacío si no aplica (por ejemplo, en un lote)."}
+              - label: "Descripción"
+                name: "descripcion"
+                widget: "list"
+                hint: "Un párrafo por línea."
+                field: {label: "Párrafo", name: "parrafo", widget: "text"}
+              - label: "Fotos"
+                name: "fotos"
+                widget: "image"
+                allow_multiple: true
+                hint: "La primera foto es la principal (tarjeta y foto grande de la ficha). Puedes seleccionar o arrastrar varias fotos a la vez en lugar de subirlas una por una; luego puedes arrastrar las miniaturas para reordenarlas."
+              - {label: "Mensaje de WhatsApp para esta propiedad", name: "mensajeWa", widget: "string", required: false, hint: "Si lo dejas vacío, se genera uno automático con el título."}
