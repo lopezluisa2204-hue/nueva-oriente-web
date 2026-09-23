@@ -70,6 +70,14 @@
       "tag": "CASA FINCA EN VENTA ",
       "pisos": "",
       "ubicacion": "Guarne - Antioquia"
+    },
+    {
+      "categoria": "Lote",
+      "tag": "CASA EN VENTA",
+      "slug": "3",
+      "fotos": [
+        "/img/1.jpeg"
+      ]
     }
   ]
 }
