@@ -13,7 +13,7 @@ if (window.netlifyIdentity) {
   window.netlifyIdentity.on("init", (user) => {
     if (!user) {
       window.netlifyIdentity.on("login", () => {
-        document.location.href = "/admin/";
+        document.location.href = "/panel/";
       });
     }
   });
@@ -59,7 +59,7 @@ if (window.netlifyIdentity) {
   <div class="wrap">
     <div class="footer-bottom">
       <span>© 2026 Nueva Oriente</span>
-      <a href="admin/" style="color:var(--text-soft);font-size:.8rem;">Acceso administrador</a>
+      <a href="panel/" style="color:var(--text-soft);font-size:.8rem;">Acceso administrador</a>
     </div>
   </div>
 </footer>
