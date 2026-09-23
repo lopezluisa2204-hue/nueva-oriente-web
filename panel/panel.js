@@ -541,6 +541,26 @@
       return;
     }
     $("listLoading").hidden = true;
+    startSessionKeepAlive();
+  }
+
+  // Mantiene la sesión viva mientras el panel esté abierto: renueva el
+  // token de acceso cada 10 minutos aunque no se esté usando el panel en
+  // ese momento, para que nunca se sienta que "se cerró sola". El panel
+  // solo cierra sesión cuando tú le das "Cerrar sesión".
+  let keepAliveTimer = null;
+  function startSessionKeepAlive() {
+    if (keepAliveTimer) return;
+    keepAliveTimer = setInterval(() => {
+      const user = netlifyIdentity.currentUser();
+      if (!user) return;
+      user.jwt(true).catch((err) => {
+        console.warn("[panel] no se pudo renovar la sesión en segundo plano:", err.message);
+      });
+    }, 10 * 60 * 1000);
+  }
+  function stopSessionKeepAlive() {
+    if (keepAliveTimer) { clearInterval(keepAliveTimer); keepAliveTimer = null; }
   }
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -553,6 +573,7 @@
       bootApp(user);
     });
     netlifyIdentity.on("logout", () => {
+      stopSessionKeepAlive();
       $("appScreen").hidden = true;
       $("loginScreen").hidden = false;
     });
