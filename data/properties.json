@@ -125,6 +125,34 @@
         "img/lote-002/foto-mueinbvak3lj.jpg"
       ],
       "mensajeWa": ""
+    },
+    {
+      "slug": "lote-003",
+      "categoria": "Lote",
+      "tag": "LOTE EN VENTA",
+      "titulo": "Lote 003",
+      "precio": 1100000000,
+      "ubicacion": "Guarne - Antioquia",
+      "habitaciones": "",
+      "banos": "",
+      "area": "",
+      "pisos": "",
+      "descripcion": [
+        "🌿 LOTE EN VENTA – GUARNE, ANTIOQUIA\n\n📍 Ubicado a tan solo 1 km de la Variante al Aeropuerto.\n\n📐 Área: 7.300 m²\n📋 Posibilidad de subdivisión: hasta 4 lotes\n🚗 Excelente ubicación y fácil acceso\n💰 Valor: $1.100.000.000 negociables\n\nUna propiedad con excelente ubicación estratégica, ideal para proyecto familiar, inversión o desarrollo inmobiliario.\n\n📲 Contáctanos para más información y agendar una visita."
+      ],
+      "fotos": [
+        "img/lote-003/foto-mueix27ewuj8.jpg",
+        "img/lote-003/foto-mueiwnovbfyk.jpg",
+        "img/lote-003/foto-mueiwssgedfs.jpg",
+        "img/lote-003/foto-mueiwkzsr995.jpg",
+        "img/lote-003/foto-mueiwpbgampn.jpg",
+        "img/lote-003/foto-mueiwqtl9a4l.jpg",
+        "img/lote-003/foto-mueiwub96zr3.jpg",
+        "img/lote-003/foto-mueiwx3sdgp0.jpg",
+        "img/lote-003/foto-mueiwyrl3f4h.jpg",
+        "img/lote-003/foto-mueix0mbfdms.jpg"
+      ],
+      "mensajeWa": ""
     }
   ]
 }
