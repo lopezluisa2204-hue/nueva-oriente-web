@@ -116,7 +116,7 @@
 
   async function loadCatalog() {
     const data = await gh(
-      `/repos/${OWNER}/${REPO}/contents/${DATA_PATH}?ref=${BRANCH}`,
+      `/contents/${DATA_PATH}?ref=${BRANCH}`,
       { method: "GET" }
     );
     const parsed = JSON.parse(b64ToUtf8(data.content));
@@ -139,7 +139,7 @@
       branch: BRANCH,
       sha: catalog.sha,
     };
-    const res = await gh(`/repos/${OWNER}/${REPO}/contents/${DATA_PATH}`, {
+    const res = await gh(`/contents/${DATA_PATH}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -197,7 +197,7 @@
     const base64 = await blobToBase64(blob);
     const suffix = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
     const path = `img/${slug}/foto-${suffix}.jpg`;
-    await gh(`/repos/${OWNER}/${REPO}/contents/${path}`, {
+    await gh(`/contents/${path}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
