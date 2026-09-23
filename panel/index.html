@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel de administración — Nueva Oriente</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="panel.css">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+<!-- Pantalla de acceso: se muestra mientras no haya una sesión iniciada. -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <img src="../img/logo-nueva-oriente-transparente.png" alt="Nueva Oriente" class="login-logo">
+    <h1>Panel de administración</h1>
+    <p>Inicia sesión para agregar, editar o eliminar propiedades del catálogo.</p>
+    <button id="loginBtn" class="btn btn-primary">Iniciar sesión</button>
+    <p class="login-note">Usa el mismo usuario y contraseña que ya tenías.</p>
+  </div>
+</div>
+
+<!-- App del panel: se muestra solo cuando hay sesión iniciada. -->
+<div id="appScreen" class="app-screen" hidden>
+
+  <header class="panel-header">
+    <div class="wrap panel-header-inner">
+      <span class="panel-brand">Nueva Oriente <span>· Panel</span></span>
+      <div class="panel-header-actions">
+        <span id="userEmail" class="user-email"></span>
+        <a href="../index.html" target="_blank" rel="noopener" class="btn btn-ghost">Ver sitio</a>
+        <button id="logoutBtn" class="btn btn-ghost">Cerrar sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <!-- Vista: listado de propiedades -->
+  <main id="listView" class="wrap view">
+    <div class="list-toolbar">
+      <div>
+        <h1>Propiedades</h1>
+        <p class="muted" id="propertyCount"></p>
+      </div>
+      <button id="addPropertyBtn" class="btn btn-primary btn-lg">+ Agregar propiedad</button>
+    </div>
+
+    <div id="listLoading" class="empty-state">Cargando catálogo…</div>
+    <div id="propertyCards" class="admin-grid"></div>
+    <div id="listEmpty" class="empty-state" hidden>
+      Todavía no hay propiedades. Usa "Agregar propiedad" para crear la primera.
+    </div>
+  </main>
+
+  <!-- Vista: crear / editar propiedad -->
+  <main id="editView" class="wrap view" hidden>
+    <button id="backBtn" type="button" class="btn-link">← Volver al listado</button>
+    <h1 id="editTitle">Nueva propiedad</h1>
+
+    <form id="propertyForm" class="property-form" autocomplete="off">
+
+      <section class="form-section">
+        <h2>Información básica</h2>
+        <div class="form-grid">
+          <label class="field">
+            <span>Categoría</span>
+            <select name="categoria" id="f_categoria" required>
+              <option value="Casa">Casa</option>
+              <option value="Apartamento">Apartamento</option>
+              <option value="Lote">Lote</option>
+              <option value="Finca">Finca</option>
+              <option value="Bodega">Bodega</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Etiqueta de la tarjeta</span>
+            <input type="text" name="tag" id="f_tag" placeholder="Ej: CASA EN VENTA">
+          </label>
+          <label class="field field-wide">
+            <span>Título</span>
+            <input type="text" name="titulo" id="f_titulo" placeholder="Ej: Casa en el barrio El Poblado" required>
+          </label>
+          <label class="field">
+            <span>Precio (COP)</span>
+            <input type="number" name="precio" id="f_precio" min="0" step="1" placeholder="Ej: 350000000" required>
+          </label>
+          <label class="field">
+            <span>Ubicación</span>
+            <input type="text" name="ubicacion" id="f_ubicacion" placeholder="Ej: Barrio El Poblado, Medellín" required>
+          </label>
+          <label class="field">
+            <span>Identificador único (slug)</span>
+            <input type="text" name="slug" id="f_slug" placeholder="Se genera solo desde el título">
+            <small>No lo cambies en una propiedad que ya tiene fotos o enlaces compartidos.</small>
+          </label>
+          <label class="field">
+            <span>Mensaje de WhatsApp <em>(opcional)</em></span>
+            <input type="text" name="mensajeWa" id="f_mensajeWa" placeholder="Si lo dejas vacío, se genera uno automático">
+          </label>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>Detalles <span class="muted-inline">(déjalos vacíos si no aplican, por ejemplo en un lote)</span></h2>
+        <div class="form-grid form-grid-4">
+          <label class="field">
+            <span>Habitaciones</span>
+            <input type="text" name="habitaciones" id="f_habitaciones">
+          </label>
+          <label class="field">
+            <span>Baños</span>
+            <input type="text" name="banos" id="f_banos">
+          </label>
+          <label class="field">
+            <span>Área construida</span>
+            <input type="text" name="area" id="f_area" placeholder="Ej: 120 m²">
+          </label>
+          <label class="field">
+            <span>Pisos</span>
+            <input type="text" name="pisos" id="f_pisos">
+          </label>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>Descripción</h2>
+        <p class="muted">Cada bloque es un párrafo independiente en la página. Dentro de un párrafo puedes usar saltos de línea.</p>
+        <div id="descripcionList" class="descripcion-list"></div>
+        <button type="button" id="addParrafoBtn" class="btn btn-outline">+ Agregar párrafo</button>
+      </section>
+
+      <section class="form-section">
+        <h2>Fotos</h2>
+        <p class="muted">La primera foto es la principal (aparece en la tarjeta y en la ficha grande). Usa las flechas para reordenar. Las fotos se suben automáticamente al seleccionarlas.</p>
+        <div id="photoGrid" class="photo-grid"></div>
+        <label class="upload-drop" id="uploadDrop">
+          <input type="file" id="photoInput" accept="image/*" multiple hidden>
+          <span class="upload-icon">📷</span>
+          <span><strong>Agregar fotos</strong><br>Puedes seleccionar varias a la vez desde tu computador o celular</span>
+        </label>
+        <div id="uploadProgress" class="upload-progress" hidden></div>
+      </section>
+
+      <div class="form-actions">
+        <button type="submit" id="saveBtn" class="btn btn-primary btn-lg">Guardar cambios</button>
+        <button type="button" id="deleteBtn" class="btn btn-danger" hidden>Eliminar propiedad</button>
+      </div>
+    </form>
+  </main>
+
+</div>
+
+<!-- Confirmación para acciones que no se pueden deshacer -->
+<div id="confirmModal" class="modal-overlay" hidden>
+  <div class="modal-card">
+    <p id="confirmText"></p>
+    <div class="modal-actions">
+      <button id="confirmCancel" class="btn btn-ghost">Cancelar</button>
+      <button id="confirmOk" class="btn btn-danger">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<script src="panel.js"></script>
+</body>
+</html>

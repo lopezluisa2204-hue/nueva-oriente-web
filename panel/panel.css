@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap');
+
+/* Mismos tonos de marca que el sitio (dorado/grafito), pero sobre un fondo
+   claro y con formularios simples: el panel viejo se sentía "feo" e
+   incómodo por sus campos oscuros; aquí priorizamos legibilidad. */
+:root{
+  --paper:#F7F4EC;
+  --card:#FFFFFF;
+  --ink:#22201B;
+  --text:#3A362E;
+  --text-soft:#7A7368;
+  --brass:#B79B5B;
+  --brass-dark:#8F773F;
+  --line:#E7E1D2;
+  --danger:#C0392B;
+  --danger-dark:#9E2E22;
+  --ok:#2E7D4F;
+  --max:1080px;
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--text);
+  font-family:'Work Sans', sans-serif;
+  font-size:16px;
+  line-height:1.5;
+}
+h1,h2,.serif{font-family:'Fraunces', serif;font-weight:600;color:var(--ink);margin:0;}
+h1{font-size:1.7rem;}
+h2{font-size:1.15rem;}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+.muted{color:var(--text-soft);font-size:.92rem;margin:4px 0 0;}
+.muted-inline{color:var(--text-soft);font-weight:400;font-size:.85rem;}
+button{font-family:inherit;}
+
+/* ---------- Botones ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:10px 18px;border-radius:8px;border:1px solid transparent;
+  font-size:.95rem;font-weight:600;cursor:pointer;text-decoration:none;
+  transition:background .15s, border-color .15s, transform .1s;
+}
+.btn:active{transform:scale(.98);}
+.btn-primary{background:var(--brass);color:#fff;}
+.btn-primary:hover{background:var(--brass-dark);}
+.btn-lg{padding:13px 24px;font-size:1rem;}
+.btn-outline{background:transparent;border-color:var(--brass);color:var(--brass-dark);}
+.btn-outline:hover{background:#FBF7EC;}
+.btn-ghost{background:transparent;border-color:var(--line);color:var(--text);}
+.btn-ghost:hover{background:#F0ECDF;}
+.btn-danger{background:var(--danger);color:#fff;}
+.btn-danger:hover{background:var(--danger-dark);}
+.btn-link{background:none;border:none;color:var(--brass-dark);font-weight:600;cursor:pointer;padding:0;margin-bottom:16px;font-size:.95rem;}
+.btn:disabled{opacity:.55;cursor:not-allowed;}
+
+/* ---------- Login ---------- */
+.login-screen{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,#16171A,#23241f);padding:24px;
+}
+.login-card{
+  background:var(--card);border-radius:16px;padding:40px 36px;max-width:380px;
+  width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+.login-logo{width:96px;height:96px;object-fit:contain;margin:0 auto 16px;display:block;}
+.login-card h1{font-size:1.35rem;margin-bottom:8px;}
+.login-card p{color:var(--text-soft);font-size:.92rem;margin:0 0 20px;}
+.login-card .btn{width:100%;}
+.login-note{margin-top:14px !important;font-size:.8rem !important;}
+
+/* ---------- Header ---------- */
+.panel-header{background:var(--card);border-bottom:1px solid var(--line);}
+.panel-header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;flex-wrap:wrap;gap:10px;}
+.panel-brand{font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;color:var(--ink);}
+.panel-brand span{color:var(--brass-dark);font-weight:500;}
+.panel-header-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.user-email{color:var(--text-soft);font-size:.85rem;margin-right:4px;}
+
+.view{padding:32px 24px 64px;}
+
+/* ---------- Toast / avisos ---------- */
+.toast{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:200;
+  background:var(--ink);color:#fff;padding:12px 20px;border-radius:8px;
+  font-size:.9rem;max-width:90vw;box-shadow:0 8px 24px rgba(0,0,0,.25);
+}
+.toast.toast-error{background:var(--danger);}
+.toast.toast-ok{background:var(--ok);}
+
+/* ---------- Listado ---------- */
+.list-toolbar{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:28px;}
+.empty-state{color:var(--text-soft);padding:40px 0;text-align:center;}
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));gap:18px;}
+.admin-card{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.admin-card-photo{aspect-ratio:4/3;background:#EAE4D3;overflow:hidden;}
+.admin-card-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.admin-card-photo.no-photo{display:flex;align-items:center;justify-content:center;color:var(--text-soft);font-size:.85rem;}
+.admin-card-body{padding:14px 16px;flex:1;display:flex;flex-direction:column;gap:4px;}
+.admin-card-tag{font-size:.7rem;font-weight:600;letter-spacing:.04em;color:var(--brass-dark);text-transform:uppercase;}
+.admin-card-title{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;color:var(--ink);}
+.admin-card-loc{color:var(--text-soft);font-size:.85rem;}
+.admin-card-price{color:var(--ink);font-weight:600;margin-top:4px;}
+.admin-card-actions{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--line);}
+.admin-card-actions .btn{flex:1;padding:8px 10px;font-size:.85rem;}
+
+/* ---------- Formulario ---------- */
+.property-form{max-width:760px;}
+.form-section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px;margin-bottom:20px;}
+.form-section h2{margin-bottom:4px;}
+.form-section > p.muted{margin-bottom:14px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;}
+.form-grid-4{grid-template-columns:repeat(4,1fr);}
+.field{display:flex;flex-direction:column;gap:5px;font-size:.88rem;font-weight:600;color:var(--text);}
+.field-wide{grid-column:1 / -1;}
+.field input,.field select,.field textarea{
+  font-family:inherit;font-size:.95rem;font-weight:400;color:var(--ink);
+  padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:#FCFBF7;
+}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--brass);outline-offset:1px;border-color:var(--brass);}
+.field small{font-weight:400;color:var(--text-soft);font-size:.78rem;}
+
+.descripcion-list{display:flex;flex-direction:column;gap:12px;margin-bottom:14px;}
+.descripcion-item{display:flex;gap:8px;align-items:flex-start;}
+.descripcion-item textarea{
+  flex:1;min-height:80px;font-family:inherit;font-size:.92rem;padding:10px 12px;
+  border:1px solid var(--line);border-radius:8px;background:#FCFBF7;resize:vertical;
+}
+.descripcion-item textarea:focus{outline:2px solid var(--brass);outline-offset:1px;}
+.remove-parrafo{
+  background:none;border:1px solid var(--line);border-radius:8px;color:var(--danger);
+  width:36px;height:36px;flex-shrink:0;cursor:pointer;font-size:1rem;
+}
+.remove-parrafo:hover{background:#FBEAE7;}
+
+/* ---------- Fotos ---------- */
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(130px, 1fr));gap:12px;margin-bottom:16px;}
+.photo-item{
+  position:relative;border-radius:8px;overflow:hidden;aspect-ratio:4/3;background:#EAE4D3;
+  border:2px solid transparent;
+}
+.photo-item.is-main{border-color:var(--brass);}
+.photo-item img{width:100%;height:100%;object-fit:cover;display:block;}
+.photo-badge{
+  position:absolute;top:6px;left:6px;background:var(--brass);color:#fff;font-size:.65rem;
+  font-weight:700;padding:2px 7px;border-radius:20px;letter-spacing:.03em;
+}
+.photo-actions{
+  position:absolute;bottom:0;left:0;right:0;display:flex;background:rgba(0,0,0,.55);
+}
+.photo-actions button{
+  flex:1;background:none;border:none;color:#fff;padding:6px 0;font-size:.9rem;cursor:pointer;
+}
+.photo-actions button:hover{background:rgba(255,255,255,.15);}
+.photo-actions button:disabled{opacity:.3;cursor:not-allowed;}
+.photo-item.uploading{display:flex;align-items:center;justify-content:center;color:var(--text-soft);font-size:.75rem;text-align:center;padding:6px;}
+
+.upload-drop{
+  display:flex;align-items:center;gap:14px;border:2px dashed var(--brass);border-radius:10px;
+  padding:18px 20px;cursor:pointer;background:#FBF7EC;color:var(--text);font-size:.9rem;
+}
+.upload-drop:hover{background:#F7EFDB;}
+.upload-icon{font-size:1.8rem;}
+.upload-progress{margin-top:10px;font-size:.85rem;color:var(--text-soft);}
+
+.form-actions{display:flex;gap:12px;align-items:center;margin-top:8px;}
+
+/* ---------- Confirmación ---------- */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(20,18,14,.55);display:flex;
+  align-items:center;justify-content:center;z-index:300;padding:20px;
+}
+.modal-card{background:var(--card);border-radius:12px;padding:26px;max-width:360px;width:100%;text-align:center;}
+.modal-card p{margin:0 0 20px;color:var(--text);}
+.modal-actions{display:flex;gap:10px;justify-content:center;}
+
+@media (max-width:640px){
+  .form-grid,.form-grid-4{grid-template-columns:1fr 1fr;}
+  .panel-header-inner{flex-direction:column;align-items:flex-start;}
+}
