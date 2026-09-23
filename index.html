@@ -31,13 +31,13 @@ if (window.netlifyIdentity) {
     </a>
     <nav class="nav-links">
       <div class="nav-item">
-        <a href="index.html#propiedades" class="dropdown-toggle">Propiedades</a>
+        <a href="propiedades.html" class="dropdown-toggle">Propiedades</a>
         <div class="dropdown-menu">
-          <a href="index.html?categoria=Casa#propiedades">Casas</a>
-          <a href="index.html?categoria=Apartamento#propiedades">Apartamentos</a>
-          <a href="index.html?categoria=Lote#propiedades">Lotes</a>
-          <a href="index.html?categoria=Finca#propiedades">Fincas</a>
-          <a href="index.html?categoria=Bodega#propiedades">Bodegas</a>
+          <a href="propiedades.html?categoria=Casa">Casas</a>
+          <a href="propiedades.html?categoria=Apartamento">Apartamentos</a>
+          <a href="propiedades.html?categoria=Lote">Lotes</a>
+          <a href="propiedades.html?categoria=Finca">Fincas</a>
+          <a href="propiedades.html?categoria=Bodega">Bodegas</a>
         </div>
       </div>
       <a href="index.html#servicios">Servicios</a>
@@ -56,7 +56,7 @@ if (window.netlifyIdentity) {
       <h1>Un hogar con historia, listo para la tuya.</h1>
       <p>Propiedades seleccionadas personalmente, con información clara y acompañamiento directo en cada paso de la compra.</p>
       <div class="hero-actions">
-        <a href="#propiedades" class="btn btn-brass">Ver propiedades</a>
+        <a href="propiedades.html" class="btn btn-brass">Ver propiedades</a>
         <a href="#" class="btn btn-whatsapp" data-wa data-wa-msg="Hola, quiero más información sobre sus propiedades.">¡Contáctanos!</a>
       </div>
     </div>
@@ -87,16 +87,17 @@ if (window.netlifyIdentity) {
   <div class="wrap">
     <div class="section-head">
       <h2>Propiedades disponibles</h2>
+      <p>Una muestra de nuestro catálogo. Entra a "Propiedades" para ver todas, con filtros por tipo.</p>
     </div>
 
-    <!-- Filtros por categoría (Lotes, Casas, Apartamentos, Fincas, Bodegas).
-         Se pintan y funcionan desde js/main.js, junto con las tarjetas. -->
-    <div class="filter-pills" id="filterPills"></div>
-
-    <!-- Las tarjetas se pintan solas desde data/properties.json (js/main.js).
-         Ese archivo es el que edita el panel de administrador en /admin. -->
-    <div class="property-grid" id="propertyGrid">
+    <!-- Adelanto de máximo 3 propiedades (js/main.js). El catálogo completo,
+         con filtros por categoría, vive en propiedades.html. -->
+    <div class="property-grid" id="propertyGridHome">
       <p style="color:var(--text-soft);">Cargando propiedades…</p>
+    </div>
+
+    <div style="text-align:center;margin-top:40px;">
+      <a href="propiedades.html" class="btn btn-brass">Ver todas las propiedades</a>
     </div>
   </div>
 </section>

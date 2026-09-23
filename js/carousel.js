@@ -1,23 +1,23 @@
-// Carrusel de "Servicios": rota automáticamente entre las tarjetas para que
-// la sección no crezca en vertical a medida que se agregan más servicios.
-// Usa scroll nativo con snap (funciona con swipe en celular) y controla el
-// autoplay, las flechas y los puntos con JS.
+// Carruseles del sitio: rotan automáticamente entre tarjetas/imágenes para
+// que las secciones no crezcan en vertical a medida que se agregan más
+// elementos. Usan scroll nativo con snap (funciona con swipe en celular) y
+// controlan el autoplay, las flechas y los puntos con JS.
 (function () {
-  function initServicesCarousel() {
-    const track = document.getElementById("servicesTrack");
-    const prevBtn = document.getElementById("servicesPrev");
-    const nextBtn = document.getElementById("servicesNext");
-    const dotsWrap = document.getElementById("servicesDots");
+  function createCarousel(opts) {
+    const track = document.getElementById(opts.trackId);
+    const prevBtn = document.getElementById(opts.prevId);
+    const nextBtn = document.getElementById(opts.nextId);
+    const dotsWrap = document.getElementById(opts.dotsId);
     if (!track || !dotsWrap) return;
 
     const cards = Array.from(track.children);
     if (cards.length === 0) return;
 
-    // Un punto por tarjeta.
+    // Un punto por elemento.
     cards.forEach((_, i) => {
       const dot = document.createElement("button");
       dot.type = "button";
-      dot.setAttribute("aria-label", "Ir al servicio " + (i + 1));
+      dot.setAttribute("aria-label", "Ir al elemento " + (i + 1));
       dot.addEventListener("click", () => goTo(i, true));
       dotsWrap.appendChild(dot);
     });
@@ -33,8 +33,7 @@
     }
 
     function updateActiveDot() {
-      const perView = cardsPerView();
-      // La tarjeta "activa" es la más cercana al borde izquierdo visible.
+      // El elemento "activo" es el más cercano al borde izquierdo visible.
       let closest = 0;
       let closestDist = Infinity;
       cards.forEach((card, i) => {
@@ -62,7 +61,7 @@
 
     function startAutoplay() {
       stopAutoplay();
-      autoplayTimer = setInterval(next, 4500);
+      autoplayTimer = setInterval(next, opts.interval || 4500);
     }
     function stopAutoplay() {
       if (autoplayTimer) clearInterval(autoplayTimer);
@@ -96,9 +95,19 @@
     startAutoplay();
   }
 
+  function initCarousels() {
+    createCarousel({
+      trackId: "servicesTrack",
+      prevId: "servicesPrev",
+      nextId: "servicesNext",
+      dotsId: "servicesDots",
+      interval: 4500,
+    });
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initServicesCarousel);
+    document.addEventListener("DOMContentLoaded", initCarousels);
   } else {
-    initServicesCarousel();
+    initCarousels();
   }
 })();

@@ -94,8 +94,43 @@ function renderFilterPills(properties) {
   return activa ? properties.filter((p) => p.categoria === activa) : properties;
 }
 
-// Pinta las tarjetas del catálogo en index.html dentro de #propertyGrid.
-// Aplica el filtro de categoría activo (menú desplegable o botones de arriba).
+// Arma el HTML de una tarjeta de propiedad. Lo usan tanto el catálogo
+// completo (propiedades.html) como el adelanto de 3 propiedades en la
+// página principal.
+function propertyCardHtml(p) {
+  const cover = (p.fotos && p.fotos[0]) || "";
+  const href = `propiedad.html?id=${encodeURIComponent(p.slug)}`;
+
+  // Estos datos son opcionales: un lote, por ejemplo, no tiene
+  // habitaciones ni baños. Solo se muestran los que sí se diligenciaron.
+  const specs = [
+    p.habitaciones ? `${escapeHtml(p.habitaciones)} hab.` : "",
+    p.banos ? `${escapeHtml(p.banos)} baños` : "",
+    p.area ? escapeHtml(p.area) : "",
+  ].filter(Boolean);
+  const specsHtml = specs.length
+    ? `<div class="property-specs">${specs.map((s) => `<span>${s}</span>`).join("")}</div>`
+    : "";
+
+  return `
+    <article class="property-card">
+      <a href="${href}">
+        <div class="property-photo">
+          <img src="${escapeHtml(cover)}" alt="${escapeHtml(p.titulo)}">
+        </div>
+      </a>
+      <div class="property-body">
+        <span class="property-tag">${escapeHtml(p.tag || "CASA EN VENTA")}</span>
+        <a href="${href}"><h3 class="property-price">${formatPrice(p.precio)}</h3></a>
+        <p class="property-loc">${escapeHtml(p.ubicacion)}</p>
+        ${specsHtml}
+        <a href="${href}" class="property-link">Ver ficha completa</a>
+      </div>
+    </article>`;
+}
+
+// Pinta el catálogo COMPLETO en propiedades.html dentro de #propertyGrid,
+// con los filtros por categoría (menú desplegable o botones de arriba).
 function renderCatalog(allProperties) {
   const grid = document.getElementById("propertyGrid");
   if (!grid) return;
@@ -107,37 +142,25 @@ function renderCatalog(allProperties) {
     return;
   }
 
-  grid.innerHTML = properties.map((p) => {
-    const cover = (p.fotos && p.fotos[0]) || "";
-    const href = `propiedad.html?id=${encodeURIComponent(p.slug)}`;
+  grid.innerHTML = properties.map(propertyCardHtml).join("");
+}
 
-    // Estos datos son opcionales: un lote, por ejemplo, no tiene
-    // habitaciones ni baños. Solo se muestran los que sí se diligenciaron.
-    const specs = [
-      p.habitaciones ? `${escapeHtml(p.habitaciones)} hab.` : "",
-      p.banos ? `${escapeHtml(p.banos)} baños` : "",
-      p.area ? escapeHtml(p.area) : "",
-    ].filter(Boolean);
-    const specsHtml = specs.length
-      ? `<div class="property-specs">${specs.map((s) => `<span>${s}</span>`).join("")}</div>`
-      : "";
+// Pinta un ADELANTO de máximo 3 propiedades en la página principal
+// (#propertyGridHome), sin filtros, con un botón para ver el catálogo
+// completo en propiedades.html. Así la portada no crece sin límite a
+// medida que se agregan propiedades nuevas.
+function renderHomeTeaser(allProperties) {
+  const grid = document.getElementById("propertyGridHome");
+  if (!grid) return;
 
-    return `
-      <article class="property-card">
-        <a href="${href}">
-          <div class="property-photo">
-            <img src="${escapeHtml(cover)}" alt="${escapeHtml(p.titulo)}">
-          </div>
-        </a>
-        <div class="property-body">
-          <span class="property-tag">${escapeHtml(p.tag || "CASA EN VENTA")}</span>
-          <a href="${href}"><h3 class="property-price">${formatPrice(p.precio)}</h3></a>
-          <p class="property-loc">${escapeHtml(p.ubicacion)}</p>
-          ${specsHtml}
-          <a href="${href}" class="property-link">Ver ficha completa</a>
-        </div>
-      </article>`;
-  }).join("");
+  const properties = allProperties.slice(0, 3);
+
+  if (!properties.length) {
+    grid.innerHTML = '<p style="color:var(--text-soft);">Pronto vas a encontrar aquí nuestras propiedades disponibles.</p>';
+    return;
+  }
+
+  grid.innerHTML = properties.map(propertyCardHtml).join("");
 }
 
 // Pinta la ficha completa de una propiedad en propiedad.html,
@@ -228,7 +251,7 @@ function renderDetail(properties) {
         <h3>¿Te interesa esta propiedad?</h3>
         <p>Escríbeme directo y te cuento todos los detalles, o coordinamos una visita.</p>
         <a href="#" class="btn btn-whatsapp" data-wa data-wa-msg="${mensajeAttr}">Preguntar por esta propiedad</a>
-        <a href="index.html#propiedades" class="btn btn-brass" style="border-color:#4A5064;color:#F4F1EA;">Ver otras propiedades</a>
+        <a href="propiedades.html" class="btn btn-brass" style="border-color:#4A5064;color:#F4F1EA;">Ver otras propiedades</a>
       </aside>
     </div>
 
@@ -250,17 +273,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // Catálogo y/o ficha de propiedad, si la página los tiene.
+  // Catálogo completo (propiedades.html), adelanto en la portada (index.html)
+  // y/o ficha de propiedad (propiedad.html), según qué tenga la página.
   const needsCatalog = document.getElementById("propertyGrid");
+  const needsHomeTeaser = document.getElementById("propertyGridHome");
   const needsDetail = document.getElementById("propertyDetail");
-  if (needsCatalog || needsDetail) {
+  if (needsCatalog || needsHomeTeaser || needsDetail) {
     try {
       const properties = await loadProperties();
       if (needsCatalog) renderCatalog(properties);
+      if (needsHomeTeaser) renderHomeTeaser(properties);
       if (needsDetail) renderDetail(properties);
     } catch (err) {
       console.error(err);
-      const target = needsDetail || needsCatalog;
+      const target = needsDetail || needsCatalog || needsHomeTeaser;
       if (target) target.innerHTML = '<p style="color:var(--text-soft);">No se pudo cargar la información. Intenta de nuevo más tarde.</p>';
     }
     // Los botones de WhatsApp que se acaban de insertar dinámicamente
