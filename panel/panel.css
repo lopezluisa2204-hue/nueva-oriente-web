@@ -19,6 +19,9 @@
 }
 
 *{box-sizing:border-box;}
+/* Blindaje: cualquier elemento marcado hidden debe desaparecer siempre,
+   sin importar qué otra regla de la hoja le ponga "display". */
+[hidden]{display:none !important;}
 body{
   margin:0;
   background:var(--paper);
@@ -174,6 +177,7 @@ button{font-family:inherit;}
   position:fixed;inset:0;background:rgba(20,18,14,.55);display:flex;
   align-items:center;justify-content:center;z-index:300;padding:20px;
 }
+.modal-overlay[hidden]{display:none;}
 .modal-card{background:var(--card);border-radius:12px;padding:26px;max-width:360px;width:100%;text-align:center;}
 .modal-card p{margin:0 0 20px;color:var(--text);}
 .modal-actions{display:flex;gap:10px;justify-content:center;}
