@@ -83,13 +83,16 @@
   async function getToken() {
     const user = netlifyIdentity.currentUser();
     if (!user) throw new Error("Tu sesión expiró. Vuelve a iniciar sesión.");
-    return user.jwt();
+    // Forzamos refresco del token: uno cacheado puede quedar viejo y
+    // Git Gateway es estricto con la fecha de expiración.
+    return user.jwt(true);
   }
 
   // ---------- Llamadas a GitHub vía Git Gateway ----------
   async function gh(path, options) {
     const token = await getToken();
-    const res = await fetch(apiRoot() + path, {
+    const fullUrl = apiRoot() + path;
+    const res = await fetch(fullUrl, {
       ...options,
       headers: {
         Authorization: "Bearer " + token,
@@ -97,9 +100,14 @@
       },
     });
     if (!res.ok) {
+      let rawText = "";
+      try { rawText = await res.text(); } catch (e) {}
       let detail = "";
-      try { detail = (await res.json()).message || ""; } catch (e) {}
-      const err = new Error(detail || `Error ${res.status}`);
+      try { detail = JSON.parse(rawText).message || ""; } catch (e) {}
+      console.error("[panel] fallo en", fullUrl, "status", res.status, "cuerpo:", rawText);
+      const err = new Error(
+        `${detail || "sin mensaje"} (status ${res.status}, url: ${fullUrl})`
+      );
       err.status = res.status;
       throw err;
     }
