@@ -216,7 +216,7 @@ a:focus-visible, button:focus-visible{
   overflow:hidden;
   min-height:420px;
   border-radius:6px;
-  border:1px solid var(--line);
+  border:2px solid var(--brass);
   box-shadow:0 20px 40px rgba(0,0,0,.35);
 }
 .hero-photo img{
@@ -294,7 +294,7 @@ a:focus-visible, button:focus-visible{
   display:block;
 }
 .property-body{
-  padding:18px 4px 4px;
+  padding:20px 20px 22px;
   display:flex;
   flex-direction:column;
   gap:10px;
