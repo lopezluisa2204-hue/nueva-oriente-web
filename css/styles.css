@@ -616,6 +616,26 @@ a:focus-visible, button:focus-visible{
   margin:18px 0 0;
 }
 
+/* Adelanto de servicios en la portada: solo iconos y nombres, sin las
+   listas completas (esas viven en servicios.html). */
+.services-teaser{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));
+  gap:24px;
+  text-align:center;
+}
+.services-teaser .service-emoji{font-size:2.1rem;display:block;margin-bottom:8px;}
+.services-teaser h3{font-size:1.02rem;}
+
+/* Redes sociales en la página de contacto: enlaces grandes, fáciles de tocar. */
+.social-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;}
+.social-links a{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 20px;border:1px solid var(--brick);border-radius:2px;
+  color:var(--ink);font-weight:500;
+}
+.social-links a:hover{background:var(--paper-2);}
+
 /* ---------- RESPONSIVE ---------- */
 
 /* Tablet (768px - 1024px): 2 columnas en el catálogo, hero un poco más compacto */

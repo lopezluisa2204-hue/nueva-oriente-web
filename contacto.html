@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Propiedades — Nueva Oriente</title>
-<meta name="description" content="Catálogo completo de propiedades en venta, filtrado por tipo. Contacto directo por WhatsApp.">
+<title>Contacto — Nueva Oriente</title>
+<meta name="description" content="Escríbenos por WhatsApp o síguenos en redes sociales: Facebook, Instagram y TikTok.">
 <link rel="stylesheet" href="css/styles.css">
 <!-- Detecta enlaces de invitación/confirmación de Netlify Identity que
      lleguen a esta página (por correo) y abre el formulario de contraseña. -->
@@ -49,23 +49,28 @@ if (window.netlifyIdentity) {
   </div>
 </header>
 
-<section class="section" id="propiedades" style="padding-top:48px;">
-  <div class="wrap">
-    <p class="breadcrumb"><a href="index.html">Inicio</a> / Propiedades</p>
+<section class="section" style="padding-top:48px;">
+  <div class="wrap" style="max-width:640px;">
+    <p class="breadcrumb"><a href="index.html">Inicio</a> / Contacto</p>
 
-    <div class="section-head">
-      <h2>Propiedades disponibles</h2>
-      <p>Filtra por tipo de propiedad o mira el catálogo completo.</p>
+    <div class="section-head" style="border:none;">
+      <h2>Hablemos</h2>
+      <p>Escríbenos por WhatsApp o síguenos en redes sociales.</p>
     </div>
 
-    <!-- Filtros por categoría (Lotes, Casas, Apartamentos, Fincas, Bodegas).
-         Se pintan y funcionan desde js/main.js, junto con las tarjetas. -->
-    <div class="filter-pills" id="filterPills"></div>
+    <div class="contact-box" style="position:static;">
+      <h3>WhatsApp directo</h3>
+      <p>Te respondemos rápido, sin intermediarios ni filas de espera.</p>
+      <a href="#" class="btn btn-whatsapp" data-wa data-wa-msg="Hola, quiero más información sobre sus propiedades.">Escribir por WhatsApp</a>
+    </div>
 
-    <!-- Las tarjetas se pintan solas desde data/properties.json (js/main.js).
-         Ese archivo es el que edita el panel de administrador en /admin. -->
-    <div class="property-grid" id="propertyGrid">
-      <p style="color:var(--text-soft);">Cargando propiedades…</p>
+    <div style="margin-top:32px;">
+      <h3 style="color:var(--ink);margin-bottom:10px;">Síguenos en redes</h3>
+      <div class="social-links">
+        <a href="https://www.facebook.com/share/1SzZXeqQwT/?mibextid=wwXIfr" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.instagram.com/nuevaorienteinmobiliaria?igsi=MWd4MTBwdmM0bzM3Zw%3D%3D&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@nuevaorientebienesraices?_r=1&_t=ZS-99zCIJK2G6E" target="_blank" rel="noopener">TikTok</a>
+      </div>
     </div>
   </div>
 </section>
