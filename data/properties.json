@@ -35,13 +35,18 @@
       "ubicacion": "Guarne - Antioquia"
     },
     {
-      "habitaciones": "",
-      "precio": 1600000000,
-      "mensajeWa": "",
       "slug": "2",
-      "area": "",
+      "categoria": "Finca",
+      "tag": "CASA FINCA EN VENTA",
+      "titulo": "Casa campestre 001",
+      "precio": 1600000000,
+      "ubicacion": "Guarne - Antioquia",
+      "habitaciones": "4",
+      "banos": "4",
+      "area": "240 m²",
+      "pisos": "2",
       "descripcion": [
-        "📍A solo 850 m de la Plaza de Mercado y 1.5 km del Parque Principal.\n\n✨ 2.500 m² de lote | 240 m² construidos | 2 niveles\n\n🏡 4 alcobas, todas con baño privado + principal con vestier\n🛋️ Sala de doble altura\n🍳 Cocina con alacena\n🔥 Zona BBQ\n🏊 Jacuzzi\n⚽ Cancha\n💻 Oficina\n☀️ Paneles solares\n🤖 Persianas con domótica\n🚗 Parqueadero cubierto\n🔒 Cerramiento y portón eléctrico\n🌳 Paisajismo\n💧 Pozo séptico\n📄 Escrituras al 100%\n"
+        "📍A solo 850 m de la Plaza de Mercado y 1.5 km del Parque Principal.\n\n✨ 2.500 m² de lote | 240 m² construidos | 2 niveles\n\n🏡 4 habitaciones, todas con baño privado + principal con vestier\n🛋️ Sala de doble altura\n🍳 Cocina con alacena\n🔥 Zona BBQ\n🏊 Jacuzzi\n⚽ Cancha\n💻 Oficina\n☀️ Paneles solares\n🤖 Persianas con domótica\n🚗 Parqueadero cubierto\n🔒 Cerramiento y portón eléctrico\n🌳 Paisajismo\n💧 Pozo séptico\n📄 Escrituras al 100%"
       ],
       "fotos": [
         "/img/14.jpeg",
@@ -64,20 +69,129 @@
         "/img/20.jpeg",
         "/img/13.jpeg"
       ],
-      "categoria": "Finca",
-      "banos": "",
-      "titulo": "Casa campestre 001",
-      "tag": "CASA FINCA EN VENTA ",
-      "pisos": "",
-      "ubicacion": "Guarne - Antioquia"
+      "mensajeWa": ""
     },
     {
-      "categoria": "Lote",
-      "tag": "CASA EN VENTA",
       "slug": "3",
+      "categoria": "Lote",
+      "tag": "LOTE EN VENTA",
+      "titulo": "Lote 001",
+      "precio": 395000000,
+      "ubicacion": "Guarne - Antioquia",
+      "habitaciones": "",
+      "banos": "",
+      "area": "",
+      "pisos": "",
+      "descripcion": [
+        "🌿 LOTE EN VENTA – VEREDA SAN JOSÉ, GUARNE, ANTIOQUIA\n\nUbicado en la vereda San José de Guarne, a tan solo 1.5 km de la variante al aeropuerto, este lote de aproximadamente 3.000 m² es una excelente oportunidad de inversión.  \n\n Características:  \n✅ Área total: 3.000 m² con escrituras al 100%  \n✅ Topografía: 70% plana, ideal para construcción  \n✅ Entorno rodeado de parcelaciones y construcciones de alta calidad\n✅ Ubicación estratégica cerca de vías principales y con fácil acceso  \n\nEste terreno ofrece un entorno natural privilegiado, con vistas despejadas y un ambiente tranquilo, perfecto para un proyecto residencial o de inversión.  \n\n💰 Precio: $395.000.000 COP NEGOCIABLES\n\n📲 Para más información o agendar una visita, ¡contáctanos!"
+      ],
       "fotos": [
-        "/img/1.jpeg"
-      ]
+        "img/3/foto-mueg6mjc7bhy.jpg",
+        "img/3/foto-mueg6kc6om5j.jpg",
+        "img/3/foto-mueg6pnh91d5.jpg",
+        "img/3/foto-mueg6f51az36.jpg",
+        "img/3/foto-mueg6gpndz9x.jpg",
+        "img/3/foto-mueg6ik3d2ar.jpg",
+        "img/3/foto-mueg6szlxhd5.jpg"
+      ],
+      "mensajeWa": ""
+    },
+    {
+      "slug": "lote-002",
+      "categoria": "Lote",
+      "tag": "LOTE EN VENTA",
+      "titulo": "Lote 002",
+      "precio": 350000000,
+      "ubicacion": "Guarne - Antioquia",
+      "habitaciones": "",
+      "banos": "",
+      "area": "",
+      "pisos": "",
+      "descripcion": [
+        "🌿LOTE EN VENTA – LA CLARA, GUARNE, ANTIOQUIA \n\n📍 Ubicado en la vereda La Clara, a tan solo 3 km del casco urbano de Guarne y de la Autopista Medellín–Bogotá.\n\n✨ Características:\n* Área: 1.300 m²\n* Escrituras al 100%\n* Topografía totalmente aprovechable\n* Excelente vista\n* Portería con control de acceso\n* Cerco vivo\n* Cerco en postes y alambre\n* Excelente ubicación para vivienda campestre o inversión\n\n💰 Precio: $350.000.000 COP NEGOCIABLES\n\n📲 Agenda tu visita y conoce esta oportunidad en Guarne."
+      ],
+      "fotos": [
+        "img/lote-002/foto-mueimtadnkwl.jpg",
+        "img/lote-002/foto-muein9j5degd.jpg",
+        "img/lote-002/foto-mueimw458kt0.jpg",
+        "img/lote-002/foto-mueimxinx93h.jpg",
+        "img/lote-002/foto-mueimz0bje0h.jpg",
+        "img/lote-002/foto-muein0ensd3x.jpg",
+        "img/lote-002/foto-muein1kygd3z.jpg",
+        "img/lote-002/foto-muein2vrad0n.jpg",
+        "img/lote-002/foto-muein5jdnti8.jpg",
+        "img/lote-002/foto-muein7uy35uj.jpg",
+        "img/lote-002/foto-mueinaoltxiy.jpg",
+        "img/lote-002/foto-mueinbvak3lj.jpg"
+      ],
+      "mensajeWa": ""
+    },
+    {
+      "slug": "lote-003",
+      "categoria": "Lote",
+      "tag": "LOTE EN VENTA",
+      "titulo": "Lote 003",
+      "precio": 1100000000,
+      "ubicacion": "Guarne - Antioquia",
+      "habitaciones": "",
+      "banos": "",
+      "area": "",
+      "pisos": "",
+      "descripcion": [
+        "🌿 LOTE EN VENTA – GUARNE, ANTIOQUIA\n\n📍 Ubicado a tan solo 1 km de la Variante al Aeropuerto.\n\n📐 Área: 7.300 m²\n📋 Posibilidad de subdivisión: hasta 4 lotes\n🚗 Excelente ubicación y fácil acceso\n💰 Precio: $1.100.000.000 negociables\n\nUna propiedad con excelente ubicación estratégica, ideal para proyecto familiar, inversión o desarrollo inmobiliario.\n\n📲 Contáctanos para más información y agendar una visita."
+      ],
+      "fotos": [
+        "img/lote-003/foto-mueix27ewuj8.jpg",
+        "img/lote-003/foto-mueiwnovbfyk.jpg",
+        "img/lote-003/foto-mueiwssgedfs.jpg",
+        "img/lote-003/foto-mueiwkzsr995.jpg",
+        "img/lote-003/foto-mueiwpbgampn.jpg",
+        "img/lote-003/foto-mueiwqtl9a4l.jpg",
+        "img/lote-003/foto-mueiwub96zr3.jpg",
+        "img/lote-003/foto-mueiwx3sdgp0.jpg",
+        "img/lote-003/foto-mueiwyrl3f4h.jpg",
+        "img/lote-003/foto-mueix0mbfdms.jpg"
+      ],
+      "mensajeWa": ""
+    },
+    {
+      "slug": "lote-004",
+      "categoria": "Lote",
+      "tag": "LOTE EN VENTA",
+      "titulo": "LOTE 004",
+      "precio": 1000000000,
+      "ubicacion": "Guarne - Antioquia",
+      "habitaciones": "",
+      "banos": "",
+      "area": "",
+      "pisos": "",
+      "descripcion": [
+        "🌿LOTE EN VENTA – GUARNE, ANTIOQUIA\n\n📍 A solo 300 metros de la zona urbana de Guarne\n\nUna excelente oportunidad para quienes buscan espacio, ubicación y proyección.\n\n📐 Área: 5.800 m²\n✅ Topografía 100% aprovechable\n🛣️ Excelente vía de acceso\n📑 Escrituras 100%\n📍 Ubicación estratégica, muy cerca de la zona urbana\n🏗️ Ideal para proyecto familiar o desarrollo inmobiliario\n\n💰 Precio: $1.000.000.000\n\n📲 Contáctanos para conocer más información y agendar una visita."
+      ],
+      "fotos": [
+        "img/lote-004/foto-mueja2doa3mu.jpg",
+        "img/lote-004/foto-muejabpjlfzp.jpg",
+        "img/lote-004/foto-muejb53og9hu.jpg",
+        "img/lote-004/foto-muejaon865zb.jpg",
+        "img/lote-004/foto-muej9vdczpxr.jpg",
+        "img/lote-004/foto-mueja92muht0.jpg",
+        "img/lote-004/foto-muejag1s605k.jpg",
+        "img/lote-004/foto-muejama7fg7s.jpg",
+        "img/lote-004/foto-muejb8dz0xbs.jpg",
+        "img/lote-004/foto-muejaw49qetz.jpg",
+        "img/lote-004/foto-muejaxx1q6e5.jpg",
+        "img/lote-004/foto-muejbadxsohk.jpg",
+        "img/lote-004/foto-muejbclpqn5c.jpg",
+        "img/lote-004/foto-muejbds7ns79.jpg",
+        "img/lote-004/foto-muejbg8kh6c8.jpg",
+        "img/lote-004/foto-muejbhv2go1a.jpg",
+        "img/lote-004/foto-muejbrbgbqjx.jpg",
+        "img/lote-004/foto-muejbuhn12mx.jpg",
+        "img/lote-004/foto-muejbx5xgetn.jpg",
+        "img/lote-004/foto-muejc0colbyz.jpg",
+        "img/lote-004/foto-muejc1nzygfb.jpg"
+      ],
+      "mensajeWa": ""
     }
   ]
 }
