@@ -1,11 +1,16 @@
 {
   "items": [
     {
-      "habitaciones": "4",
-      "precio": 600000000,
-      "mensajeWa": "",
       "slug": "1",
+      "categoria": "Casa",
+      "tag": "CASA EN VENTA",
+      "titulo": "Casa en venta 001",
+      "precio": 500000000,
+      "ubicacion": "Guarne - Antioquia",
+      "habitaciones": "4",
+      "banos": "3",
       "area": "150 m²",
+      "pisos": "3",
       "descripcion": [
         "✨Excelente oportunidad de inversión y vivienda ✨\n\n📐 Área aproximada: 150 m²\n🏠 Casa de 3 niveles con sótano \n\n🔹 Nivel  (Sótano):\n* 1 alcoba con baño privado\n\n🔹 Nivel 1:\n* Sala\n* ⁠Comedor \n* Cocina\n* Baño social\n\n🔹 Nivel 2:\n* 2 alcobas\n* 1 baño\n\n🔹 Nivel 3:\n* 1 alcoba\n* Patio con hermosa vista panorámica.\n\nIdeal para quienes buscan comodidad, amplitud y una excelente distribución en un entorno tranquilo."
       ],
@@ -27,12 +32,7 @@
         "img/CASA 001 LUISA/luisa-2-.jpeg",
         "img/CASA 001 LUISA/luisa-1-.jpeg"
       ],
-      "categoria": "Casa",
-      "banos": "3",
-      "titulo": "Casa en venta 001",
-      "tag": "CASA EN VENTA ",
-      "pisos": "3",
-      "ubicacion": "Guarne - Antioquia"
+      "mensajeWa": ""
     },
     {
       "slug": "2",
