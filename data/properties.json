@@ -314,6 +314,23 @@
         "img/lote-006/foto-mux4elwcnwch.jpg"
       ],
       "mensajeWa": "Hola, quiero más información sobre la disponibilidad del Lote 006."
+    },
+    {
+      "slug": "lote-007",
+      "categoria": "Lote",
+      "tag": "LOTE EN VENTA",
+      "titulo": "Lote 007",
+      "precio": 380000000,
+      "ubicacion": "Guarne - Antioquia",
+      "habitaciones": "",
+      "banos": "",
+      "area": "",
+      "pisos": "",
+      "descripcion": [
+        "🌿LOTES EN VENTA – GUARNE, ANTIOQUIA \n\nExcelente oportunidad de inversión a tan solo 1,5 km del Parque Principal de Guarne. Disponibles dos lotes de 1.800 m² cada uno, con topografía totalmente aprovechable, excelente ubicación y alto potencial de valorización.\n\n📍 Ubicación estratégica, cerca de la zona urbana y con fácil acceso.\n📑 Escrituras al 100%\n💰 Precio: $380.000.000 COP negociables\n\nUna excelente opción para construir, invertir y disfrutar de la tranquilidad de Guarne sin alejarte del casco urbano."
+      ],
+      "fotos": [],
+      "mensajeWa": ""
     }
   ]
 }
