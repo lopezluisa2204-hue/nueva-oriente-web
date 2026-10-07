@@ -24,6 +24,7 @@
   let current = null; // propiedad que se está editando (copia editable)
   let currentIsNew = false;
   let uploading = false;
+  let currentFilter = "Todas"; // filtro activo en el listado del panel
 
   // ---------- Utilidades ----------
   function $(id) { return document.getElementById(id); }
@@ -55,9 +56,17 @@
     return s;
   }
 
-  function formatPrice(n) {
-    const num = Number(n) || 0;
-    return "$" + num.toLocaleString("es-CO");
+  function formatPrice(value) {
+    if (value === null || value === undefined || value === "") return "Consultar precio";
+    const str = String(value).trim();
+    // Si lo que se escribió son solo números (con puntos o comas de miles),
+    // lo formateamos con separadores. Si tiene letras (ej. "Negociable",
+    // "Desde $300.000.000"), se muestra tal cual se escribió.
+    const cleaned = str.replace(/[.,\s]/g, "");
+    if (/^\d+$/.test(cleaned)) {
+      return "$" + parseInt(cleaned, 10).toLocaleString("es-CO");
+    }
+    return str;
   }
 
   function photoSrc(path) {
@@ -221,18 +230,48 @@
     $("editView").hidden = false;
   }
 
+  function renderFilterPills() {
+    const wrap = $("panelFilterPills");
+    if (!wrap) return;
+    const opciones = ["Todas", ...CATEGORIAS];
+    wrap.innerHTML = opciones
+      .map((cat) => {
+        const count = cat === "Todas"
+          ? catalog.items.length
+          : catalog.items.filter((p) => p.categoria === cat).length;
+        const active = cat === currentFilter ? "active" : "";
+        return `<button type="button" class="filter-pill ${active}" data-filter="${cat}">${cat} <span class="filter-pill-count">${count}</span></button>`;
+      })
+      .join("");
+    wrap.querySelectorAll("[data-filter]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        currentFilter = btn.dataset.filter;
+        renderList();
+      });
+    });
+  }
+
   function renderList() {
     const grid = $("propertyCards");
     const empty = $("listEmpty");
-    $("propertyCount").textContent =
-      catalog.items.length === 1 ? "1 propiedad" : `${catalog.items.length} propiedades`;
+    renderFilterPills();
+    const visible = catalog.items
+      .map((p, idx) => ({ p, idx }))
+      .filter(({ p }) => currentFilter === "Todas" || p.categoria === currentFilter);
+    $("propertyCount").textContent = catalog.items.length === 1
+      ? "1 propiedad"
+      : `${catalog.items.length} propiedades`;
     grid.innerHTML = "";
     if (!catalog.items.length) {
       empty.hidden = false;
       return;
     }
     empty.hidden = true;
-    catalog.items.forEach((p, idx) => {
+    if (!visible.length) {
+      grid.innerHTML = `<p class="muted" style="padding:16px 0;">No hay propiedades en esta categoría.</p>`;
+      return;
+    }
+    visible.forEach(({ p, idx }) => {
       const card = document.createElement("div");
       card.className = "admin-card";
       const photo = p.fotos && p.fotos[0];
@@ -407,7 +446,7 @@
 
     const titulo = $("f_titulo").value.trim();
     const ubicacion = $("f_ubicacion").value.trim();
-    const precio = $("f_precio").value;
+    const precio = $("f_precio").value.trim();
     let slug = $("f_slug").value.trim() || slugify(titulo);
     if (!titulo || !ubicacion || !precio) {
       toast("Completa título, ubicación y precio.", "error");
@@ -426,7 +465,7 @@
       categoria: $("f_categoria").value,
       tag: $("f_tag").value.trim(),
       titulo,
-      precio: Number(precio),
+      precio,
       ubicacion,
       habitaciones: $("f_habitaciones").value.trim(),
       banos: $("f_banos").value.trim(),

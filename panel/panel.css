@@ -94,6 +94,12 @@ button{font-family:inherit;}
 
 /* ---------- Listado ---------- */
 .list-toolbar{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:28px;}
+.filter-pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;}
+.filter-pill{background:var(--card);border:1px solid var(--line);color:var(--text);padding:7px 14px;font-size:.85rem;font-family:'Work Sans',sans-serif;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
+.filter-pill:hover{border-color:var(--brass);}
+.filter-pill.active{background:var(--brass);border-color:var(--brass);color:#fff;}
+.filter-pill-count{font-size:.75rem;color:var(--text-soft);background:var(--paper);border-radius:999px;padding:1px 7px;}
+.filter-pill.active .filter-pill-count{background:rgba(255,255,255,.3);color:#fff;}
 .empty-state{color:var(--text-soft);padding:40px 0;text-align:center;}
 .admin-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));gap:18px;}
 .admin-card{

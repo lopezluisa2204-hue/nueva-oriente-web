@@ -24,10 +24,17 @@ function escapeHtml(str) {
   return (str || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
-function formatPrice(n) {
-  n = parseInt(n || 0, 10);
-  if (isNaN(n)) return "$ 0";
-  return "$ " + n.toLocaleString("es-CO");
+function formatPrice(value) {
+  if (value === null || value === undefined || value === "") return "Consultar precio";
+  const str = String(value).trim();
+  // Si lo que se escribió son solo números (con puntos o comas de miles),
+  // lo formateamos con separadores. Si tiene letras (ej. "Negociable",
+  // "Desde $300.000.000"), se muestra tal cual se escribió.
+  const cleaned = str.replace(/[.,\s]/g, "");
+  if (/^\d+$/.test(cleaned)) {
+    return "$ " + parseInt(cleaned, 10).toLocaleString("es-CO");
+  }
+  return str;
 }
 
 // Carga el catálogo de propiedades desde data/properties.json.

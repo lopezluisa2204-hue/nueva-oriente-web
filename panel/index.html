@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Panel de administración — Nueva Oriente</title>
 <meta name="robots" content="noindex, nofollow">
-<link rel="stylesheet" href="panel.css?v=4">
+<link rel="stylesheet" href="panel.css?v=5">
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
@@ -47,6 +47,8 @@
       <button id="addPropertyBtn" class="btn btn-primary btn-lg">+ Agregar propiedad</button>
     </div>
 
+    <div class="filter-pills" id="panelFilterPills"></div>
+
     <div id="listLoading" class="empty-state">Cargando catálogo…</div>
     <div id="propertyCards" class="admin-grid"></div>
     <div id="listEmpty" class="empty-state" hidden>
@@ -84,7 +86,7 @@
           </label>
           <label class="field">
             <span>Precio (COP)</span>
-            <input type="number" name="precio" id="f_precio" min="0" step="1" placeholder="Ej: 350000000" required>
+            <input type="text" name="precio" id="f_precio" placeholder="Ej: 350.000.000 o Negociable" required>
           </label>
           <label class="field">
             <span>Ubicación</span>
@@ -163,6 +165,6 @@
   </div>
 </div>
 
-<script src="panel.js?v=5"></script>
+<script src="panel.js?v=6"></script>
 </body>
 </html>
