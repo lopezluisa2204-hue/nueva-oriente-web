@@ -278,6 +278,13 @@ a:focus-visible, button:focus-visible{
   border-top:3px solid var(--brick);
   display:flex;
   flex-direction:column;
+  position:relative;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.property-card:hover{
+  transform:scale(1.035);
+  box-shadow:0 14px 28px rgba(0,0,0,.28);
+  z-index:2;
 }
 .property-photo{
   aspect-ratio:4/3;
