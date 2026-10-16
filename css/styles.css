@@ -660,8 +660,28 @@ a:focus-visible, button:focus-visible{
   gap:24px;
   text-align:center;
 }
-.services-teaser .service-emoji{font-size:2.1rem;display:block;margin-bottom:8px;}
-.services-teaser h3{font-size:1.02rem;}
+.services-teaser-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  color:inherit;
+  text-decoration:none;
+  padding:22px 12px;
+  border-radius:8px;
+  border-top:3px solid transparent;
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+}
+.services-teaser-item:hover,
+.services-teaser-item:focus-visible{
+  transform:translateY(-6px);
+  background:var(--paper);
+  border-top-color:var(--brick);
+  box-shadow:0 14px 28px rgba(0,0,0,.35);
+}
+.services-teaser .service-emoji{font-size:2.1rem;display:block;margin-bottom:8px;transition:transform .25s ease;}
+.services-teaser-item:hover .service-emoji{transform:scale(1.18);}
+.services-teaser-item h3{transition:color .2s ease;}
+.services-teaser-item:hover h3{color:var(--brick);}
 
 /* Redes sociales en la página de contacto: enlaces grandes, fáciles de tocar. */
 .social-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;}

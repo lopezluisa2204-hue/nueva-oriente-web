@@ -47,9 +47,9 @@
       dots.forEach((d, i) => d.classList.toggle("active", i === closest));
     }
 
-    function goTo(index, userInitiated) {
+    function goTo(index, userInitiated, instant) {
       const clamped = (index + cards.length) % cards.length;
-      track.scrollTo({ left: cards[clamped].offsetLeft, behavior: "smooth" });
+      track.scrollTo({ left: cards[clamped].offsetLeft, behavior: instant ? "auto" : "smooth" });
       current = clamped;
       if (userInitiated) restartAutoplay();
     }
@@ -91,6 +91,18 @@
       scrollTimeout = setTimeout(updateActiveDot, 150);
     });
 
+    // Si la página se abrió con ?servicio=slug (desde los iconos de
+    // servicios en el inicio), arrancamos el carrusel directo en esa
+    // tarjeta en vez de en la primera.
+    if (opts.initialServiceParam) {
+      const params = new URLSearchParams(location.search);
+      const slug = params.get(opts.initialServiceParam);
+      if (slug) {
+        const idx = cards.findIndex((c) => c.dataset.service === slug);
+        if (idx > 0) goTo(idx, false, true);
+      }
+    }
+
     updateActiveDot();
     startAutoplay();
   }
@@ -102,6 +114,7 @@
       nextId: "servicesNext",
       dotsId: "servicesDots",
       interval: 4500,
+      initialServiceParam: "servicio",
     });
   }
 

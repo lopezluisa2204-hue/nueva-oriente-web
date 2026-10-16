@@ -115,13 +115,15 @@ if (window.netlifyIdentity) {
       <p>Además de la venta de propiedades, ofrecemos estos servicios técnicos.</p>
     </div>
     <!-- Adelanto de servicios: solo iconos y nombres. El detalle completo
-         de cada servicio vive en servicios.html. -->
+         de cada servicio vive en servicios.html. Cada icono es un enlace
+         directo a su servicio (?servicio=... mueve el carrusel de
+         servicios.html hasta esa tarjeta, ver js/carousel.js). -->
     <div class="services-teaser">
-      <div><span class="service-emoji" aria-hidden="true">📐</span><h3>Licencias</h3></div>
-      <div><span class="service-emoji" aria-hidden="true">⚖️</span><h3>Asesoría legal</h3></div>
-      <div><span class="service-emoji" aria-hidden="true">📊</span><h3>Avalúos</h3></div>
-      <div><span class="service-emoji" aria-hidden="true">🌿</span><h3>Desarrollo</h3></div>
-      <div><span class="service-emoji" aria-hidden="true">🏗️</span><h3>Construcción</h3></div>
+      <a href="servicios.html?servicio=licencias" class="services-teaser-item"><span class="service-emoji" aria-hidden="true">📐</span><h3>Licencias</h3></a>
+      <a href="servicios.html?servicio=legal" class="services-teaser-item"><span class="service-emoji" aria-hidden="true">⚖️</span><h3>Asesoría legal</h3></a>
+      <a href="servicios.html?servicio=avaluos" class="services-teaser-item"><span class="service-emoji" aria-hidden="true">📊</span><h3>Avalúos</h3></a>
+      <a href="servicios.html?servicio=desarrollo" class="services-teaser-item"><span class="service-emoji" aria-hidden="true">🌿</span><h3>Desarrollo</h3></a>
+      <a href="servicios.html?servicio=construccion" class="services-teaser-item"><span class="service-emoji" aria-hidden="true">🏗️</span><h3>Construcción</h3></a>
     </div>
     <div style="text-align:center;margin-top:32px;">
       <a href="servicios.html" class="btn btn-brass">Ver todos los servicios</a>
