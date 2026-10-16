@@ -99,7 +99,14 @@
       const slug = params.get(opts.initialServiceParam);
       if (slug) {
         const idx = cards.findIndex((c) => c.dataset.service === slug);
-        if (idx > 0) goTo(idx, false, true);
+        if (idx >= 0) {
+          goTo(idx, false, true);
+          // Resalta la tarjeta elegida unos segundos, igual que el efecto
+          // de los iconos de servicios en el inicio.
+          const target = cards[idx];
+          target.classList.add("is-highlighted");
+          setTimeout(() => target.classList.remove("is-highlighted"), 2200);
+        }
       }
     }
 
