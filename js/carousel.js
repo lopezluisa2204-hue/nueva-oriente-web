@@ -117,7 +117,7 @@
           // de los iconos de servicios en el inicio.
           const target = cards[idx];
           target.classList.add("is-highlighted");
-          setTimeout(() => target.classList.remove("is-highlighted"), 2200);
+          setTimeout(() => target.classList.remove("is-highlighted"), 2250);
         }
       }
     }
