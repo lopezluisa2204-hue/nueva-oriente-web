@@ -426,7 +426,7 @@ a:focus-visible, button:focus-visible{
    se seleccionó. Ver js/carousel.js. */
 .service-card.is-highlighted{
   transform:translateY(-8px) scale(1.03);
-  animation:service-pulse-glow .75s ease-in-out 3;
+  animation:service-pulse-glow .75s ease-in-out 2;
 }
 @keyframes service-pulse-glow{
   0%, 100%{box-shadow:0 18px 36px rgba(0,0,0,.45), 0 0 0 2px var(--brass);}
