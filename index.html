@@ -50,6 +50,11 @@ if (window.netlifyIdentity) {
 </header>
 
 <section class="hero">
+  <!-- La foto de portada es ahora el fondo de todo el banner, de ancho
+       completo. El texto va sobrepuesto encima (ver .hero-bg en styles.css). -->
+  <div class="hero-bg">
+    <img src="img/Portada.jpg" alt="Una de nuestras propiedades en venta">
+  </div>
   <div class="wrap">
     <div class="hero-copy">
       <p class="eyebrow">Venta de propiedades</p>
@@ -58,11 +63,6 @@ if (window.netlifyIdentity) {
       <div class="hero-actions">
         <a href="propiedades.html" class="btn btn-brass">Ver propiedades</a>
         <a href="#" class="btn btn-whatsapp" data-wa data-wa-msg="Hola, quiero más información sobre sus propiedades.">¡Contáctanos!</a>
-      </div>
-    </div>
-    <div class="hero-photo">
-      <div class="hero-photo-inner">
-        <img src="img/Portada.jpg" alt="Una de nuestras propiedades en venta">
       </div>
     </div>
   </div>

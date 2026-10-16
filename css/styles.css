@@ -170,12 +170,39 @@ a:focus-visible, button:focus-visible{
   align-items:center;
   overflow:hidden;
 }
-.hero .wrap{
+/* La foto de portada ahora es el fondo de todo el banner (ancho completo
+   de la pantalla), con el texto sobrepuesto encima. */
+.hero-bg{
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
+.hero-bg img{
   width:100%;
-  display:grid;
-  grid-template-columns:1fr 1.2fr;
-  gap:48px;
-  align-items:center;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.hero-bg::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to right, rgba(22,23,26,.88) 0%, rgba(22,23,26,.68) 38%, rgba(22,23,26,.25) 68%, rgba(22,23,26,0) 100%);
+}
+.hero::before{
+  /* Línea dorada en el borde inferior del banner, como acento de marca
+     donde empieza a deslizarse el resto del contenido por encima. */
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:4px;
+  background:linear-gradient(to right, var(--brick), var(--brass));
+  z-index:2;
+}
+.hero .wrap{
+  position:relative;
+  z-index:1;
+  width:100%;
   padding:56px 24px;
 }
 .page-content{
@@ -233,40 +260,6 @@ a:focus-visible, button:focus-visible{
   color:var(--paper);
 }
 .btn-whatsapp:hover{background:var(--brass);}
-.hero-photo{
-  position:relative;
-  min-height:420px;
-  border-radius:6px;
-  border:2px solid var(--brass);
-  /* Efecto de marco de foto: un "paspartú" en el mismo tono del fondo,
-     más una sombra doble (una pegada al marco y otra más difusa, como si
-     el marco proyectara sombra sobre la pared). */
-  background:var(--paper-2);
-  padding:10px;
-  box-shadow:
-    0 2px 6px rgba(0,0,0,.4),
-    0 24px 48px rgba(0,0,0,.4);
-}
-.hero-photo-inner{
-  position:relative;
-  overflow:hidden;
-  border-radius:3px;
-  width:100%;
-  height:100%;
-}
-.hero-photo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-.hero-photo-inner::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to left, rgba(31,33,36,0) 60%, rgba(31,33,36,.55));
-}
-
 /* ---------- SECTION HEADINGS ---------- */
 .section{
   padding:72px 0;
@@ -728,11 +721,9 @@ a:focus-visible, button:focus-visible{
   /* En móvil el banner vuelve a comportarse normal (sin quedarse fijo):
      en celulares el alto de pantalla cambia todo el tiempo (barra de
      direcciones que aparece/desaparece) y el efecto se ve brincado. */
-  .hero{position:static;height:auto;z-index:auto;}
+  .hero{position:relative;height:auto;min-height:520px;z-index:auto;}
   .page-content{margin-top:0;}
-  .hero .wrap{grid-template-columns:1fr;}
-  .hero-copy{padding:36px 20px 28px;max-width:none;order:2;}
-  .hero-photo{min-height:260px;order:1;}
+  .hero-copy{padding:36px 20px 28px;max-width:none;}
   .hero-copy h1{font-size:1.9rem;}
   .strip .wrap{grid-template-columns:1fr;padding:32px 20px;gap:24px;}
   .service-card{flex:0 0 calc(100% - 8px);}
