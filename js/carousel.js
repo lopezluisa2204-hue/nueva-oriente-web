@@ -54,6 +54,18 @@
       if (userInitiated) restartAutoplay();
     }
 
+    // Centra una tarjeta en el carrusel (en vez de dejarla pegada al borde
+    // izquierdo, como hace goTo). Se usa para la tarjeta que llega
+    // seleccionada desde los iconos del inicio, para que resalte bien en
+    // el medio de la pantalla.
+    function centerCard(index, instant) {
+      const clamped = (index + cards.length) % cards.length;
+      const card = cards[clamped];
+      const target = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
+      track.scrollTo({ left: Math.max(0, target), behavior: instant ? "auto" : "smooth" });
+      current = clamped;
+    }
+
     function next() {
       const perView = cardsPerView();
       goTo(current + perView >= cards.length ? 0 : current + perView);
@@ -100,7 +112,7 @@
       if (slug) {
         const idx = cards.findIndex((c) => c.dataset.service === slug);
         if (idx >= 0) {
-          goTo(idx, false, true);
+          centerCard(idx, true);
           // Resalta la tarjeta elegida unos segundos, igual que el efecto
           // de los iconos de servicios en el inicio.
           const target = cards[idx];
