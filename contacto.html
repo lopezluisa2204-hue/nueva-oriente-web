@@ -58,11 +58,10 @@ if (window.netlifyIdentity) {
       <p>Cuéntanos qué propiedad buscas y te contactaremos pronto.</p>
     </div>
 
-    <!-- Formulario de contacto: envía los datos a través de Netlify Forms,
-         que entrega cada envío directamente al correo configurado para el
-         sitio (ver nota al final de este archivo / aviso al administrador). -->
-    <form name="contacto" method="POST" data-netlify="true" class="contact-form" id="contactForm">
-      <input type="hidden" name="form-name" value="contacto">
+    <!-- Formulario de contacto: envía los datos con EmailJS (ver script al
+         final de este archivo), que entrega cada envío directamente al
+         correo de Nueva Oriente sin pasar por ningún backend propio. -->
+    <form class="contact-form" id="contactForm">
       <p style="position:absolute;left:-9999px;" aria-hidden="true">
         <label>No llenar este campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
       </p>
@@ -185,27 +184,55 @@ if (window.netlifyIdentity) {
 </a>
 
 <script src="js/main.js"></script>
+<!-- EmailJS: envía el correo directo desde el navegador de quien llena el
+     formulario, sin pasar por Netlify ni por ningún servidor propio.
+     Cuenta gratuita de Nueva Oriente en emailjs.com (plan free, 200
+     correos/mes). Si algún día se necesita más volumen o se quiere cambiar
+     de cuenta, estos 3 valores son los que hay que actualizar. -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-// Envía el formulario de contacto a Netlify Forms sin recargar la página,
-// y muestra el mensaje de agradecimiento en su lugar.
 (function () {
+  var EMAILJS_PUBLIC_KEY = "-_XXqbdl1eYR4Kdj6";
+  var EMAILJS_SERVICE_ID = "service_9xlo3nm";
+  var EMAILJS_TEMPLATE_ID = "template_1enw0gi";
+
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+
   var form = document.getElementById("contactForm");
   if (!form) return;
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    var data = new FormData(form);
 
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(data).toString(),
-    })
+    // Anti-spam sencillo: si el campo oculto "bot-field" viene lleno,
+    // lo llenó un robot (una persona nunca lo ve ni lo toca).
+    var bot = form.querySelector('[name="bot-field"]');
+    if (bot && bot.value) return;
+
+    var params = {
+      nombre: document.getElementById("cf-nombre").value,
+      telefono: document.getElementById("cf-telefono").value,
+      correo: document.getElementById("cf-correo").value,
+      tipo_propiedad: document.getElementById("cf-tipo").value,
+      zona: document.getElementById("cf-zona").value,
+      presupuesto: document.getElementById("cf-presupuesto").value,
+      mensaje: document.getElementById("cf-mensaje").value,
+    };
+
+    var btn = form.querySelector('button[type="submit"]');
+    var originalText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = "Enviando...";
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
       .then(function () {
         form.hidden = true;
         document.getElementById("formSuccess").hidden = false;
       })
-      .catch(function () {
+      .catch(function (err) {
+        console.error(err);
+        btn.disabled = false;
+        btn.textContent = originalText;
         alert("Hubo un problema al enviar el formulario. Por favor intenta de nuevo o escríbenos directamente al correo nuevaorienteinmobiliaria@gmail.com.");
       });
   });
