@@ -66,7 +66,7 @@ a:focus-visible, button:focus-visible{
   gap:12px;
 }
 .logo-mark{
-  width:84px;height:84px;flex-shrink:0;
+  width:104px;height:104px;flex-shrink:0;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -562,7 +562,7 @@ a:focus-visible, button:focus-visible{
 .footer-brand{display:flex;flex-direction:column;gap:14px;}
 .footer-brand-row{display:flex;align-items:center;gap:12px;}
 .footer-brand-row .logo-mark{
-  width:52px;height:52px;flex-shrink:0;
+  width:66px;height:66px;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
 }
 .footer-brand-row .logo-mark img{width:100%;height:100%;object-fit:contain;}
@@ -877,7 +877,7 @@ a:focus-visible, button:focus-visible{
   .hero-actions{flex-direction:column;align-items:stretch;}
   .hero-actions .btn{justify-content:center;}
   .logo-text{font-size:1.3rem;}
-  .logo-mark{width:66px;height:66px;}
+  .logo-mark{width:80px;height:80px;}
   .wa-float{width:52px;height:52px;bottom:16px;right:16px;}
 }
 
