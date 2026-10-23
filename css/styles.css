@@ -721,7 +721,7 @@ a:focus-visible, button:focus-visible{
   padding:22px 12px;
   border-radius:8px;
   border-top:3px solid transparent;
-  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease, opacity .6s ease;
 }
 .services-teaser-item:hover,
 .services-teaser-item:focus-visible{
@@ -741,6 +741,70 @@ a:focus-visible, button:focus-visible{
 .social-links-icons{margin-top:4px;}
 .social-links-icons a{width:44px;height:44px;}
 .social-links-icons svg{width:20px;height:20px;}
+
+/* ---------- ANIMACIONES AL HACER SCROLL (portada) ----------
+   .reveal: se desliza hacia arriba mientras aparece (strip de confianza,
+   bloque "Sobre Nueva Oriente"). .reveal-fade: solo aparece con opacidad,
+   sin mover el eje Y, para no pelear con el "levitado" que ya tienen las
+   tarjetas de servicios al pasar el mouse (ambos usan transform). La clase
+   .is-visible la agrega js/main.js con un IntersectionObserver. */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease, transform .6s ease;}
+.reveal.is-visible{opacity:1;transform:translateY(0);}
+.reveal-fade{opacity:0;}
+.reveal-fade.is-visible{opacity:1;}
+.strip-item.reveal:nth-child(2){transition-delay:.08s;}
+.strip-item.reveal:nth-child(3){transition-delay:.16s;}
+.services-teaser-item.reveal-fade:nth-child(2){transition-delay:.06s;}
+.services-teaser-item.reveal-fade:nth-child(3){transition-delay:.12s;}
+.services-teaser-item.reveal-fade:nth-child(4){transition-delay:.18s;}
+.services-teaser-item.reveal-fade:nth-child(5){transition-delay:.24s;}
+
+/* ---------- BANNER: formas doradas con sensación de profundidad ----------
+   Flotan sobre la foto de portada y se desplazan en capas distintas según
+   la posición del mouse (ver initHeroParallax en js/main.js). Ocultas en
+   el banner "aplanado" de celular (ver media query más abajo). */
+.hero-shape{
+  position:absolute;
+  border-radius:50%;
+  border:1.5px solid rgba(183,155,91,.5);
+  pointer-events:none;
+  z-index:1;
+  transition:transform .15s ease-out;
+}
+.hero-shape-1{width:220px;height:220px;top:14%;right:8%;}
+.hero-shape-2{width:120px;height:120px;top:58%;right:24%;border-color:rgba(184,150,60,.35);}
+.hero-shape-3{width:60px;height:60px;top:24%;right:32%;background:rgba(183,155,91,.12);border:none;}
+
+/* ---------- FORMULARIO DE CONTACTO ---------- */
+.contact-form{margin-top:4px;}
+.contact-form .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.contact-form .field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.contact-form .form-row .field{margin-bottom:0;}
+.contact-form label{font-size:.85rem;font-weight:500;color:var(--text);}
+.contact-form input,
+.contact-form select,
+.contact-form textarea{
+  font-family:'Work Sans',sans-serif;
+  font-size:.95rem;
+  color:var(--ink);
+  background:var(--paper-2);
+  border:1px solid var(--line);
+  padding:11px 14px;
+}
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus{outline:none;border-color:var(--brass);}
+.contact-form textarea{resize:vertical;min-height:100px;font-family:inherit;}
+.contact-form .form-actions{margin-top:4px;}
+.contact-form .form-note{color:var(--text-soft);font-size:.82rem;margin-top:14px;}
+.form-success{
+  background:var(--paper-2);
+  border:1px solid var(--brass);
+  padding:30px 26px;
+  text-align:center;
+}
+.form-success h3{margin-bottom:8px;}
+.form-success p{color:var(--text-soft);margin:0;}
 
 /* ---------- RESPONSIVE ---------- */
 
@@ -795,6 +859,7 @@ a:focus-visible, button:focus-visible{
      direcciones que aparece/desaparece) y el efecto se ve brincado. */
   .hero{position:relative;height:auto;min-height:520px;z-index:auto;}
   .page-content{margin-top:0;}
+  .hero-shape{display:none;}
   .hero-copy{padding:36px 20px 28px;max-width:none;}
   .hero-copy h1{font-size:1.9rem;}
   .strip .wrap{grid-template-columns:1fr;padding:32px 20px;gap:24px;}

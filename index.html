@@ -55,6 +55,11 @@ if (window.netlifyIdentity) {
   <div class="hero-bg">
     <img src="img/Portada.jpg" alt="Una de nuestras propiedades en venta">
   </div>
+  <!-- Formas doradas decorativas: se mueven en capas distintas según la
+       posición del mouse (ver initHeroParallax en js/main.js). -->
+  <div class="hero-shape hero-shape-1" aria-hidden="true"></div>
+  <div class="hero-shape hero-shape-2" aria-hidden="true"></div>
+  <div class="hero-shape hero-shape-3" aria-hidden="true"></div>
   <div class="wrap">
     <div class="hero-copy">
       <p class="eyebrow">Venta de propiedades</p>
@@ -74,15 +79,15 @@ if (window.netlifyIdentity) {
 
 <section class="strip">
   <div class="wrap">
-    <div class="strip-item">
+    <div class="strip-item reveal">
       <h3>Atención directa</h3>
       <p>Hablamos directamente por WhatsApp, sin intermediarios ni filas de espera.</p>
     </div>
-    <div class="strip-item">
+    <div class="strip-item reveal">
       <h3>Información completa</h3>
       <p>Cada propiedad incluye fotos reales, ficha técnica y ubicación detallada.</p>
     </div>
-    <div class="strip-item">
+    <div class="strip-item reveal">
       <h3>Acompañamiento</h3>
       <p>Te guiamos en todo el proceso, desde la primera visita hasta el cierre del negocio.</p>
     </div>
@@ -119,11 +124,11 @@ if (window.netlifyIdentity) {
          directo a su servicio (?servicio=... mueve el carrusel de
          servicios.html hasta esa tarjeta, ver js/carousel.js). -->
     <div class="services-teaser">
-      <a href="servicios.html?servicio=licencias" class="services-teaser-item"><span class="service-emoji" aria-hidden="true">📐</span><h3>Licencias</h3></a>
-      <a href="servicios.html?servicio=legal" class="services-teaser-item"><span class="service-emoji" aria-hidden="true">⚖️</span><h3>Asesoría legal</h3></a>
-      <a href="servicios.html?servicio=avaluos" class="services-teaser-item"><span class="service-emoji" aria-hidden="true">📊</span><h3>Avalúos</h3></a>
-      <a href="servicios.html?servicio=desarrollo" class="services-teaser-item"><span class="service-emoji" aria-hidden="true">🌿</span><h3>Desarrollo</h3></a>
-      <a href="servicios.html?servicio=construccion" class="services-teaser-item"><span class="service-emoji" aria-hidden="true">🏗️</span><h3>Construcción</h3></a>
+      <a href="servicios.html?servicio=licencias" class="services-teaser-item reveal-fade"><span class="service-emoji" aria-hidden="true">📐</span><h3>Licencias</h3></a>
+      <a href="servicios.html?servicio=legal" class="services-teaser-item reveal-fade"><span class="service-emoji" aria-hidden="true">⚖️</span><h3>Asesoría legal</h3></a>
+      <a href="servicios.html?servicio=avaluos" class="services-teaser-item reveal-fade"><span class="service-emoji" aria-hidden="true">📊</span><h3>Avalúos</h3></a>
+      <a href="servicios.html?servicio=desarrollo" class="services-teaser-item reveal-fade"><span class="service-emoji" aria-hidden="true">🌿</span><h3>Desarrollo</h3></a>
+      <a href="servicios.html?servicio=construccion" class="services-teaser-item reveal-fade"><span class="service-emoji" aria-hidden="true">🏗️</span><h3>Construcción</h3></a>
     </div>
     <div style="text-align:center;margin-top:32px;">
       <a href="servicios.html" class="btn btn-brass">Ver todos los servicios</a>
@@ -132,7 +137,7 @@ if (window.netlifyIdentity) {
 </section>
 
 <section class="section" id="nosotros">
-  <div class="wrap" style="max-width:820px;">
+  <div class="wrap reveal" style="max-width:820px;">
     <div class="section-head" style="border:none;">
       <h2>Sobre Nueva Oriente</h2>
     </div>

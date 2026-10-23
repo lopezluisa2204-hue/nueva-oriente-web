@@ -302,7 +302,42 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   initLightbox();
+  initRevealOnScroll();
+  initHeroParallax();
 });
+
+// Anima la aparición de elementos (clases .reveal / .reveal-fade) a medida
+// que entran en la pantalla al hacer scroll. No hace nada en páginas que
+// no tengan ninguno de estos elementos (por ahora, solo la portada).
+function initRevealOnScroll() {
+  const items = document.querySelectorAll(".reveal, .reveal-fade");
+  if (!items.length) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      entry.target.classList.toggle("is-visible", entry.isIntersecting);
+    });
+  }, { threshold: 0.2 });
+
+  items.forEach((el) => io.observe(el));
+}
+
+// Mueve las formas doradas decorativas del banner (.hero-shape) en capas
+// distintas según la posición del mouse, dando sensación de profundidad.
+// No hace nada en páginas sin banner con estas formas.
+function initHeroParallax() {
+  const shapes = document.querySelectorAll(".hero-shape");
+  if (!shapes.length) return;
+
+  window.addEventListener("mousemove", (e) => {
+    const x = e.clientX / window.innerWidth - 0.5;
+    const y = e.clientY / window.innerHeight - 0.5;
+    shapes.forEach((shape, i) => {
+      const depth = (i + 1) * 14;
+      shape.style.transform = `translate(${(x * depth).toFixed(1)}px, ${(y * depth).toFixed(1)}px)`;
+    });
+  });
+}
 
 // Galería con zoom: funciona en las fotos de la ficha de una propiedad
 // (galería principal + sección "Más fotos"). No afecta las tarjetas del catálogo.
