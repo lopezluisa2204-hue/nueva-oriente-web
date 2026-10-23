@@ -879,6 +879,16 @@ a:focus-visible, button:focus-visible{
   .logo-text{font-size:1.3rem;}
   .logo-mark{width:80px;height:80px;}
   .wa-float{width:52px;height:52px;bottom:16px;right:16px;}
+
+  /* Formulario de contacto en celular: un solo campo por fila (en vez de
+     2 columnas apretadas), letra más grande en los campos (evita que el
+     teléfono haga zoom automático al tocar un input) y el botón de envío
+     ocupa todo el ancho para que sea más fácil de tocar. */
+  .contact-form .form-row{grid-template-columns:1fr;gap:16px;}
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea{font-size:16px;padding:12px 14px;}
+  .contact-form .form-actions .btn{width:100%;justify-content:center;}
 }
 
 @media (prefers-reduced-motion: reduce){
