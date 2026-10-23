@@ -70,9 +70,6 @@ a:focus-visible, button:focus-visible{
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#F7F4EC;
-  border-radius:50%;
-  padding:8px;
 }
 .logo-mark img{width:100%;height:100%;object-fit:contain;}
 .logo-text{
@@ -567,7 +564,6 @@ a:focus-visible, button:focus-visible{
 .footer-brand-row .logo-mark{
   width:52px;height:52px;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
-  background:#F7F4EC;border-radius:50%;padding:6px;
 }
 .footer-brand-row .logo-mark img{width:100%;height:100%;object-fit:contain;}
 .footer-brand-row .name{font-family:'Fraunces', serif;font-size:1.1rem;color:var(--ink);}
